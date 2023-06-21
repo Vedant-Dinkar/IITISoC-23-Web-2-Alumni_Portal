@@ -1,0 +1,990 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #F8F8F8;
+}
+
+#navbar {
+    /* display: flex; */
+    display: grid;
+    grid-template-areas:
+        'logo iit'
+        'logo root';
+}
+
+.root {
+    /* display: flex; */
+    margin-top: 51px;
+     /* margin-right: 800px; */
+    /* margin-left: -800px; */
+    display: grid;
+    /* border: 2px solid red;  */
+    grid-template-columns: repeat(4, 3fr);
+      grid-column-gap: 30rem; 
+    /* height: 29px; */
+    grid-area: root;
+    width: 100%;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+#navbar ul li a {
+    font-size: 30px;
+    text-decoration: none;
+    /* padding: 100px; */
+    color: white;
+    margin: 0px 10px;
+}
+
+#navbar ul li {
+    list-style: none;
+}
+
+#logo {
+    padding-left: 50px;
+    height: 150px;
+    width: 150px;
+    grid-area: logo;
+    position: relative;
+    top: 10px;
+}
+
+img {
+    height: 148px;
+    width: 150px;
+
+}
+
+.iit {
+    font-size: 35px;
+    display: inline-block;
+    grid-area: iit;
+    /* width: 533px; */
+     /* margin-right: 1500px; */
+    height: 37px;
+    margin-top: 30px;
+    color: black;
+    /* margin-left: -1000px; */
+
+    /* margin: 10px; */
+    /* margin-left: -49px; */
+    /* border: 2px solid red;  */
+
+}
+.IITI{
+    display: none;
+}
+#menu{
+    display: none;
+}
+
+#navbar::before {
+    content: "";
+    background-color: #4c5175;
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    height: 100px;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    /* background: #f7d1d1; */
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#navbar ul li a:hover {
+    color: aqua;
+}
+.btn1{
+    
+    /* display: block; */
+    float: right;
+    margin: 0px 15px;
+    /* position: absolute;  */
+    position: relative;
+    bottom: 130px;
+    font-size: 25px;
+    background-color: #bce7d9;
+    padding: 6px 6px;
+}
+.btn1:hover{
+    color: grey;
+}
+
+.lol {
+    overflow: hidden;
+}
+
+#gate{
+    width: 100%;
+    height: 1000px;
+    position: relative;
+    bottom: 14px;
+}
+
+/* director message  */
+.msgphoto{
+    display: flex;
+}
+ #dirimage{
+    width: 25%;
+     display: flex; 
+    align-items: center; 
+    /* height: 440px; */
+      /* border: 2px red solid;  */
+} 
+.msgphoto img{
+    width: 320px;
+     height: 220px; 
+     position: relative;
+    /* top: 110px; */
+    left: 390px; 
+}
+#msg{
+    width: 70%;
+    border: 14px solid #8CE7D9;
+    font-size: 45px;
+    background-color: #E1E8EC;
+    /* height: 400px; */
+    /* margin-left: 20px; */
+    
+}
+#msg p{
+    /* margin-left: 100px; */
+    margin: 25px 75px;
+}
+
+.center{
+    text-align: center;
+}
+.message h3{
+    font-size: 70px;
+    margin-left: 350px;
+    margin:20px 0px;
+}
+body{
+overflow-x: hidden;
+}
+*{
+margin: 0px;
+padding: 0px;
+}
+
+/* for alumni updates */
+.alumniupdates h2{
+margin: 40px 0px;
+font-size: 55px;
+}
+.updates{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     flex-wrap:wrap ;
+}
+.box{
+    /* border: 2px solid red;  */
+    height:750px ; 
+    padding: 6px;
+    width: 30%;
+    margin: 3px 17px;
+    position: relative;
+    
+}
+.box h6{
+    font-size: 30px;
+    margin:15px 0px;
+}
+.box p{
+    font-size: 24px;
+}
+.read{
+    text-decoration: none;
+     margin: 50px 30px;  
+     display: inline;
+     /* width: 100%; */
+     /* border: 2px solid red; */
+     float: right;
+     position: absolute;
+     bottom: -57px;
+     right: 10px;
+    font-size: 32px;
+     color: black;
+}
+.READ{
+    width: 100%;
+    border: 2px red solid;
+}
+.read:hover{
+    background-color: #E1E8EC;
+}
+.pic{
+    width: 100%;
+    object-fit: cover;
+    height:500px;
+}
+.horizontalline{
+    width: 100%;
+    height: 1px;
+    background-color:rgb(214, 199, 199);
+    margin: 50px 0px;;
+    /* border: 4px solid black; */
+    position:absolute;
+    bottom:-62px ;
+}
+
+/* awards section */
+.data{
+    display: flex;
+     flex-wrap: wrap; 
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #4c5175;
+    margin-top: 50px;
+    overflow-x: hidden;
+}
+/* .bgdata::before{
+    content: "";
+    position:absolute;
+    background-color: #4c5175;
+    width: 100%;
+    margin-top: 1000px;
+} */
+.info{
+    /* margin: 100px; */
+    /* margin: 75px 0px; */
+    /* width: 22%; */
+    font-size: 50px;
+     /* padding-left: 35px;  */
+     padding: 50px 75px;
+    color: white;
+    
+}
+
+/* gallery  */
+.gallerypic{
+    display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items: center; 
+
+}
+.square{
+    border: 2px solid red;
+    height:400px ;
+    padding: 14px 7px;
+    width: 23%;
+    margin: 15px 12px;
+}
+.gallery h2{
+    font-size: 55px;
+    margin: 40px 0px;
+}
+
+/* for navigation bar  */
+@media only screen and (min-width:1700px) and (max-width:2130px){
+.root{
+     grid-column-gap: 20rem ; 
+}}
+@media only screen and (min-width:50px) and (max-width:900px){
+#navbar:before{
+    height: 85px;
+}
+#navbar ul li a{
+    font-size: 20px;
+}
+#gate{
+    bottom: 31px;
+}
+}
+@media only screen and (min-width:1450px) and (max-width:1700px){
+.root{
+     grid-column-gap: 15rem ; 
+}
+
+}
+@media only screen and (min-width:1250px) and (max-width:1450px){
+.root{
+     grid-column-gap: 10rem ; 
+}
+
+}
+@media only screen and (min-width:850px) and (max-width:1250px){
+.root{
+     grid-column-gap: 5rem ; 
+}
+.IITI{
+    display: block; font-size: 35px;
+    display: inline-block;
+    grid-area: iit;
+    /* width: 533px; */
+     /* margin-right: 1500px; */
+    height: 37px;
+    margin-top: 30px;
+    color: black;
+}
+.iit{
+    display:none;
+}
+
+}
+@media only screen and (min-width:600px) and (max-width:850px){
+.root{
+     grid-column-gap: 0.5rem ; 
+}
+.IITI{
+    display: block; font-size: 35px;
+    display: inline-block;
+    grid-area: iit;
+    /* width: 533px; */
+     /* margin-right: 1500px; */
+    height: 37px;
+    margin-top: 30px;
+    color: black;
+    margin-left: -36px;
+}
+.iit{
+    display:none;
+}
+#logo{
+    padding-left: 10px;
+}
+
+}
+@media only screen and (min-width:281px) and (max-width:600px){
+/* .uc{
+    display: flex;
+} */
+.item{
+    display: none;
+}
+.IITI{
+    display: block; font-size: 20px;
+    display: inline-block;
+    grid-area: iit;
+    /* width: 533px; */
+     /* margin-right: 1500px; */
+    height: 37px;
+    margin-top: 30px;
+    margin-left: -10px;
+    color: black;
+}
+.btn1{
+    font-size: 12px;
+    padding: 6px 3px;
+    margin: 7px 8px;
+}
+.iit{
+    display:none;
+}
+#menu{
+    display: block;
+
+}
+#home{
+    display: block;
+}
+#logo{
+    padding-left: 5px;
+    height: 75px;
+    width: 75px;
+    padding-top: 20px;
+}
+img {
+    height: 110px;
+    width: 100px;
+
+}
+.root{
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 5rem;
+}
+}
+@media only screen and (min-width:281px) and (max-width:440px){
+.root{
+     grid-template-columns: 0.5fr 0.5fr;
+    grid-column-gap: 0.5rem; 
+    margin-top: 40px;
+    /* display: inline;
+    float: right; */
+
+}
+#logo{
+    padding-left: 5px;
+    height: 75px;
+    width: 75px;
+    padding-top: 25px;
+}
+img {
+    height: 85px;
+    width: 85px;
+
+}
+.btn1{
+    font-size: 12px;
+    padding: 6px 3px;
+    margin: 7px 8px;
+    margin-top: 20px;
+
+}
+#navbar ul li a{
+    margin: -17px;
+    font-size: 15px;
+}
+.IITI{
+    margin-left: -10px;
+}
+
+}
+@media only screen and (min-width:410px) and (max-width:500px){
+    .IITI{
+        margin-left: -10px;
+    }
+}
+@media only screen and (min-width:500px) and (max-width:600px){
+    .IITI{
+        margin-left: -10px;
+    }
+}
+
+/* correction of navigation bar acc to phone  */
+/* IPHONE SE  */
+@media only screen and (min-width:360px) and (max-width:600px){
+    .IITI{
+        margin-left: -105px;
+    }
+    #navbar::before{
+        height: 60px;
+        top: 85px;
+    }
+    .container::before{
+        height: 100px;
+
+    }
+    #gate{
+        bottom:50px;
+    }
+}
+
+@media only screen and (min-width:540px) and (max-width:600px){
+    .IITI{
+        margin-left: -85px;
+        font-size: 30px;
+    }
+    #gate{
+        bottom:40px;
+    }
+    #navbar::before{
+        height: 64px;
+        top: 88px;
+    }
+    .btn1{
+        margin-top: 14px;
+    }
+}
+@media only screen and (min-width:430px) and (max-width:440px){
+    .IITI{
+        margin-left: -151px;
+        /* font-size: 30px; */
+    }
+    .btn1{
+        margin-top: 33px;
+    }
+}
+@media only screen and (min-width:440px) and (max-width:540px){
+    .IITI{
+        margin-left: -41px;
+        font-size: 25px; 
+    }
+    #gate{
+        bottom:42px;
+    }
+    #navbar::before{
+        height: 74px;
+        top: 85px;
+
+    }
+    .btn1{
+        margin-top: 21px;
+    }
+}
+@media only screen and (min-width:360px) and (max-width:430px){
+    .IITI{
+        margin-left: -122px;
+        font-size: 25px; 
+    }
+    #gate{
+        bottom:42px;
+    }
+    #navbar::before{
+        height: 74px;
+        top: 85px;
+
+    }
+    .btn1{
+        margin-top: 30px;
+    }
+}
+/* @media only screen and (min-width:360px) and (max-width:440px){
+    .IITI{
+        margin-left: -104px;
+        font-size: 15px; 
+    }
+    #navbar::before{
+        height: 84px;
+        top: 65px;
+    
+
+    }
+    .container::before{
+        height: 50px;
+        top: 20px;
+        
+    }
+    #gate{
+        bottom:55px;
+    }
+    #navbar ul li a {
+        margin-bottom: 20px;
+         
+    }
+    #logo{
+        padding-top: 15px;
+    }
+    
+}  */
+
+
+@media only screen and (min-width:320px) and (max-width:360px){
+    .IITI{
+        margin-left: -104px;
+        font-size: 15px; 
+    }
+    #navbar::before{
+        height: 84px;
+        top: 65px;
+        /* display: flex;
+        align-items: center; */
+
+    }
+    .container::before{
+        height: 50px;
+        top: 20px;
+        /* position: relative; */
+    }
+    #gate{
+        bottom:55px;
+    }
+    #navbar ul li a {
+        margin-bottom: 20px;
+         /* font-size: 20px;  */
+    }
+    #logo{
+        padding-top: 15px;
+    }
+    
+}
+@media only screen and (min-width:270px) and (max-width:320px){
+    .IITI{
+        margin-left: -106px;
+        font-size: 15px; 
+        display: none;
+    }
+    #navbar::before{
+        height: 69px;
+        top: 45px;
+
+    }
+    .container::before{
+        height: 50px;
+        top: 120px;
+        /* position: relative; */
+    }
+    .lol{
+        position: relative;
+    }
+    #gate{
+        bottom:50px;
+    }
+    .btn1{
+        bottom: 111px;
+        margin-top:22px ;
+}
+#logo{
+    padding-top: 22px;
+    z-index: 2000;
+}
+}
+
+@media only screen and (min-width:700px) and (max-width:800px){
+    .IITI{
+        margin-left: -88px;
+    }
+}
+@media only screen and (min-width:800px) and (max-width:850px){
+    .IITI{
+        margin-left: -118px;
+    }
+}
+
+/* gate  */
+@media only screen and (min-width:901px) and (max-width:3400px){
+ #gate{
+    bottom:18px ;
+ }
+}
+/* dir message  */
+ @media only screen and (min-width:2250px) and (max-width:2490px){
+#msg p{
+    margin:25px 125px;
+}
+.msgphoto img{
+    left:390px;
+}
+
+
+} 
+@media only screen and (min-width:1980px) and (max-width:2250px){
+#msg p{
+    margin:25px 150px;
+}
+.msgphoto img{
+    left:340px;
+}
+
+
+} 
+@media only screen and (min-width:1800px) and (max-width:1980px){
+#msg p{
+    margin:25px 150px;
+    /* margin-left: 200px; */
+}
+.msgphoto img{
+    left:290px;
+}
+}
+@media only screen and (min-width:1650px) and (max-width:1800px){
+#msg p{
+    margin:25px 150px;
+    /* margin-left: 160px; */
+}
+.msgphoto img{
+    left:260px;
+}}
+@media only screen and (min-width:1500px) and (max-width:1650px){
+#msg p{
+    margin:25px 150px;
+    /* margin-left: 200px; */
+}
+.msgphoto img{
+    left:230px;
+}
+
+}
+@media only screen and (min-width:1360px) and (max-width:1500px){
+#msg p{
+    margin:25px 150px;
+    /* margin-left: 200px; */
+}
+.msgphoto img{
+    left:180px;
+}
+
+}
+@media only screen and (min-width:1280px) and (max-width:1360px){
+#msg p{
+    margin:25px 150px;
+    /* margin-left: 200px; */
+}
+.msgphoto img{
+    left:170px;
+}
+
+}
+
+@media only screen and (min-width:2500px) and (max-width:2600px){
+.msgphoto img{
+    left:390px;}
+
+}
+@media only screen and (min-width:2600px) and (max-width:2700px){
+.msgphoto img{
+    left:390px;}
+
+}
+@media only screen and (min-width:2700px) and (max-width:2800px){
+.msgphoto img{
+    left:402px;}
+
+}
+@media only screen and (min-width:2800px) and (max-width:2900px){
+.msgphoto img{
+    left:414px;}
+
+}
+@media only screen and (min-width:2900px) and (max-width:3000px){
+.msgphoto img{
+    left:426px;}
+
+}
+@media only screen and (min-width:3000px) and (max-width:3100px){
+.msgphoto img{
+    left:438px;}
+
+}
+/* @media only screen and (min-width:2650px) and (max-width:3100px){
+.msgphoto img{
+    top:95px;
+}
+
+}  
+@media only screen and (min-width:2650px) and (max-width:3100px){
+.msgphoto img{
+    top:95px;
+}
+
+} 
+@media only screen and (min-width:3100px) and (max-width:3250px){
+.msgphoto img{
+    top:58px;
+    left:464px;
+}
+
+} 
+@media only screen and (min-width:3250px) and (max-width:3450px){
+.msgphoto img{
+    top:58px;
+    left:484px;
+}
+
+}   */
+
+/* for gate image */
+@media only screen and (min-width:280px) and (max-width:1280px){
+
+#gate{
+    height:500px;
+}
+}
+
+
+
+/* only for director msg  */
+
+@media only screen and (min-width:50px) and (max-width:1280px){
+.msgphoto{
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 14px solid #8CE7D9;
+    background-color:  #E1E8EC;
+}
+.msgphoto img{
+    top: 10px;
+    left: 0px;
+    display: block;
+    height: 150px;
+    padding: 3px 0px;
+    margin: 0px auto;
+}
+#msg{
+    width: 90%;
+    border: 0;
+}
+
+#dirimage{
+width: 50%;
+}
+#msg p{
+margin: 15px 25px;
+}
+.message h3{
+text-align: center;
+margin-left: 0px;
+font-size: 55px;
+}
+@media only screen and (min-width:400px) and (max-width:850px){
+.msgphoto img{
+    width: 200px;
+    height: 110px;
+}
+.message h3{
+    font-size: 40px;
+}
+}
+@media only screen and (min-width:100px) and (max-width:400px){
+.msgphoto img{
+    width: 100px;
+    height: 55px;
+}
+.message h3{
+    font-size: 35px;
+}
+
+#msg{
+    font-size: 30px;
+}
+}
+}
+
+/* for alumni updates  */
+@media only screen and (min-width:600px) and (max-width:1660px){
+    .box{
+         height: 840px; 
+    }
+}
+@media only screen and (min-width:919px) and (max-width:1379px){
+    .box{
+         height: 840px; 
+         width: 45%;
+    }
+    #box3{
+        bottom:-45px ;
+        margin-bottom: 20px;
+        height: 780px;
+    }
+   
+  
+}
+
+@media only screen and (min-width:600px) and (max-width:919px){
+    .box{
+        width: 80%;
+        height: 840px; 
+    }
+
+    #box3{
+        bottom:-45px ;
+        margin-bottom: 20px;
+        height: 790px;
+    } 
+    #box1{
+        margin-bottom :20px;
+    }
+}
+
+@media only screen and (min-width:500px) and (max-width:600px){
+    .box{
+        width: 80%;
+        height: 850px; 
+    }
+    .alumniupdates h2{
+        font-size: 45px;
+    }
+    .read{
+        font-size: 28px;
+    }
+    #box3{
+        bottom:-45px ;
+        margin-bottom: 20px;
+        height: 790px;
+    }
+    #box1{
+        margin-bottom :20px;
+        height:810px;
+    }
+}
+@media only screen and (min-width:400px) and (max-width:500px){
+    .box{
+        width: 85%;
+        height: 790px; 
+    }
+    .alumniupdates h2{
+        font-size: 45px;
+    }
+    .read{
+        font-size: 28px;
+    }
+    #box3{
+        bottom:-45px ;
+        margin-bottom: 20px;
+        height: 810px;
+    }
+    #box2{
+        height: 950px;
+    }
+    #box1{
+        height: 900px;
+    }
+    #box1{
+        margin-bottom :20px;
+    }
+}
+
+@media only screen and (min-width:356px) and (max-width:400px){
+    .box{
+        width: 90%;
+        height: 790px; 
+    }
+    .read{
+        font-size: 28px;
+    }
+    .alumniupdates h2{
+        font-size: 40px;
+    }
+    #box3{
+        bottom:-45px ;
+        margin-bottom: 20px;
+        height: 810px;
+    }
+    #box2{
+        height: 950px;
+    }
+    #box1{
+        height: 900px;
+    }
+    #box1{
+        margin-bottom :20px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:356px){
+    .box{
+        width: 97%;
+        height: 900px; 
+    }
+    .box p{
+        font-size: 18px;
+    }
+    .read{
+        font-size: 22px;
+    }
+    .alumniupdates h2{
+        font-size: 30px;
+    }
+    #box3{
+        bottom:-45px ;
+        margin-bottom: 20px;
+        height: 810px;
+    }
+    #box2{
+        height: 930px;
+    }
+    #box1{
+        height: 870px;
+    }
+    #box1{
+        margin-bottom :20px;
+    }
+}
+
+/* awards */
+@media only screen and (min-width:270px) and (max-width:312px){
+    .info{
+        font-size: 30px;
+    }
+}
+@media only screen and (min-width:240px) and (max-width:270px){
+    .info{
+        font-size: 27px;
+    }
+}
