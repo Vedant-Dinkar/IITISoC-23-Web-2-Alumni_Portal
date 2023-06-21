@@ -6,6 +6,10 @@
 body {
     overflow-x: hidden;
     background-color: #F8F8F8;
+    /* height:200%;
+    width:200%;
+    transform-origin: top left;*/
+    /* zoom: 95%; */
 }
 
 #navbar {
@@ -17,15 +21,16 @@ body {
 }
 
 .root {
-    /* display: flex; */
-    margin-top: 51px;
+     display: flex; 
+    /* margin-top: 51px; */
      /* margin-right: 800px; */
     /* margin-left: -800px; */
-    display: grid;
-    /* border: 2px solid red;  */
-    grid-template-columns: repeat(4, 3fr);
-      grid-column-gap: 30rem; 
-    /* height: 29px; */
+    /* margin: 0px 25px; */
+     /* display: grid; 
+     border: 2px solid red;  
+     grid-template-columns: repeat(4, 1fr); 
+       grid-column-gap: 16rem;   */
+
     grid-area: root;
     width: 100%;
     /* justify-content: center; */
@@ -33,11 +38,14 @@ body {
 }
 
 #navbar ul li a {
-    font-size: 30px;
+    font-size: 14px;
     text-decoration: none;
     /* padding: 100px; */
-    color: white;
-    margin: 0px 10px;
+        color: white; 
+    /* padding-bottom:25px ; */
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
+     margin: 0px 90px; 
 }
 
 #navbar ul li {
@@ -46,29 +54,29 @@ body {
 
 #logo {
     padding-left: 50px;
-    height: 150px;
-    width: 150px;
+    /* height: 150px; */
+    /* width: 150px; */
     grid-area: logo;
     position: relative;
     top: 10px;
 }
 
 img {
-    height: 148px;
-    width: 150px;
+    height: 102px;
+    width: 84px;
 
 }
 
 .iit {
-    font-size: 35px;
+    font-size: 20px;
     display: inline-block;
     grid-area: iit;
     /* width: 533px; */
      /* margin-right: 1500px; */
-    height: 37px;
-    margin-top: 30px;
+    /* height: 37px; */
+     margin-top: 20px; 
     color: black;
-    /* margin-left: -1000px; */
+     margin-left: -100px; 
 
     /* margin: 10px; */
     /* margin-left: -49px; */
@@ -82,26 +90,25 @@ img {
     display: none;
 }
 
-#navbar::before {
+ #navbar::before {
     content: "";
     background-color: #4c5175;
     position: absolute;
-    top: 80px;
+    top: 55px;
     width: 100%;
-    height: 100px;
+    height: 40px;
     z-index: -1;
     overflow: hidden;
-}
+} 
 
-.container::before {
+/* .container::before {
     content: "";
-    /* background: #f7d1d1; */
     position: absolute;
     width: 100%;
     height: 80px;
     z-index: -1;
     overflow: hidden;
-}
+} */
 
 #navbar ul li a:hover {
     color: aqua;
@@ -110,11 +117,11 @@ img {
     
     /* display: block; */
     float: right;
-    margin: 0px 15px;
+     margin: 0px 10px; 
     /* position: absolute;  */
     position: relative;
-    bottom: 130px;
-    font-size: 25px;
+    bottom: 90px; 
+    font-size: 12px;
     background-color: #bce7d9;
     padding: 6px 6px;
 }
@@ -128,10 +135,14 @@ img {
 
 #gate{
     width: 100%;
-    height: 1000px;
+    height: 500px;
     position: relative;
-    bottom: 14px;
+    bottom: 41px;
+    z-index: -5000;
 }
+
+
+
 
 /* director message  */
 .msgphoto{
@@ -141,37 +152,42 @@ img {
     width: 25%;
      display: flex; 
     align-items: center; 
+    justify-content: center;
     /* height: 440px; */
-      /* border: 2px red solid;  */
+       /* border: 2px red solid;   */
 } 
 .msgphoto img{
-    width: 320px;
-     height: 220px; 
+    width: 180px;
+     height: 125px; 
      position: relative;
+     left: 110px;  
     /* top: 110px; */
-    left: 390px; 
 }
 #msg{
     width: 70%;
-    border: 14px solid #8CE7D9;
-    font-size: 45px;
+    border: 10px solid #8CE7D9;
+    font-size: 22px;
     background-color: #E1E8EC;
     /* height: 400px; */
-    /* margin-left: 20px; */
+      /* margin-left: 48px;   */
     
 }
 #msg p{
-    /* margin-left: 100px; */
-    margin: 25px 75px;
+    
+    margin: 25px 40px;
+     margin-left: 55px; 
+    
 }
 
 .center{
     text-align: center;
 }
 .message h3{
-    font-size: 70px;
-    margin-left: 350px;
-    margin:20px 0px;
+    font-size: 40px;
+    /* margin-left: 350px; */
+    margin:20px 0px; 
+    margin-top: -10px;
+    text-align: center;
 }
 body{
 overflow-x: hidden;
@@ -183,8 +199,8 @@ padding: 0px;
 
 /* for alumni updates */
 .alumniupdates h2{
-margin: 40px 0px;
-font-size: 55px;
+margin: 30px 0px;
+font-size: 40px;
 }
 .updates{
     display: flex;
@@ -194,19 +210,19 @@ font-size: 55px;
 }
 .box{
     /* border: 2px solid red;  */
-    height:750px ; 
+    height:550px ; 
     padding: 6px;
-    width: 30%;
-    margin: 3px 17px;
+    width: 29%;
+    margin: 3px 10px;
     position: relative;
     
 }
 .box h6{
-    font-size: 30px;
+    font-size: 22px;
     margin:15px 0px;
 }
 .box p{
-    font-size: 24px;
+    font-size: 18px;
 }
 .read{
     text-decoration: none;
@@ -218,7 +234,7 @@ font-size: 55px;
      position: absolute;
      bottom: -57px;
      right: 10px;
-    font-size: 32px;
+    font-size: 22px;
      color: black;
 }
 .READ{
@@ -231,7 +247,7 @@ font-size: 55px;
 .pic{
     width: 100%;
     object-fit: cover;
-    height:500px;
+     height:300px; 
 }
 .horizontalline{
     width: 100%;
@@ -249,7 +265,7 @@ font-size: 55px;
      flex-wrap: wrap; 
     justify-content: center;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
     background-color: #4c5175;
     margin-top: 50px;
     overflow-x: hidden;
@@ -264,10 +280,11 @@ font-size: 55px;
 .info{
     /* margin: 100px; */
     /* margin: 75px 0px; */
-    /* width: 22%; */
-    font-size: 50px;
+    width: 23%; 
+    font-size: 30px;
      /* padding-left: 35px;  */
-     padding: 50px 75px;
+     /* padding: 50px 75px; */
+     padding: 30px 75px;
     color: white;
     
 }
@@ -282,709 +299,492 @@ font-size: 55px;
 }
 .square{
     border: 2px solid red;
-    height:400px ;
+    height:300px ;
     padding: 14px 7px;
     width: 23%;
     margin: 15px 12px;
 }
 .gallery h2{
-    font-size: 55px;
+    font-size: 32px;
     margin: 40px 0px;
 }
 
 /* for navigation bar  */
-@media only screen and (min-width:1700px) and (max-width:2130px){
-.root{
-     grid-column-gap: 20rem ; 
-}}
-@media only screen and (min-width:50px) and (max-width:900px){
-#navbar:before{
-    height: 85px;
-}
-#navbar ul li a{
-    font-size: 20px;
-}
-#gate{
-    bottom: 31px;
-}
-}
-@media only screen and (min-width:1450px) and (max-width:1700px){
-.root{
-     grid-column-gap: 15rem ; 
-}
 
-}
-@media only screen and (min-width:1250px) and (max-width:1450px){
-.root{
-     grid-column-gap: 10rem ; 
-}
 
-}
-@media only screen and (min-width:850px) and (max-width:1250px){
-.root{
-     grid-column-gap: 5rem ; 
-}
-.IITI{
-    display: block; font-size: 35px;
-    display: inline-block;
-    grid-area: iit;
-    /* width: 533px; */
-     /* margin-right: 1500px; */
-    height: 37px;
-    margin-top: 30px;
-    color: black;
-}
-.iit{
-    display:none;
-}
-
-}
-@media only screen and (min-width:600px) and (max-width:850px){
-.root{
-     grid-column-gap: 0.5rem ; 
-}
-.IITI{
-    display: block; font-size: 35px;
-    display: inline-block;
-    grid-area: iit;
-    /* width: 533px; */
-     /* margin-right: 1500px; */
-    height: 37px;
-    margin-top: 30px;
-    color: black;
-    margin-left: -36px;
-}
-.iit{
-    display:none;
-}
-#logo{
-    padding-left: 10px;
-}
-
-}
-@media only screen and (min-width:281px) and (max-width:600px){
-/* .uc{
-    display: flex;
-} */
-.item{
-    display: none;
-}
-.IITI{
-    display: block; font-size: 20px;
-    display: inline-block;
-    grid-area: iit;
-    /* width: 533px; */
-     /* margin-right: 1500px; */
-    height: 37px;
-    margin-top: 30px;
-    margin-left: -10px;
-    color: black;
-}
-.btn1{
-    font-size: 12px;
-    padding: 6px 3px;
-    margin: 7px 8px;
-}
-.iit{
-    display:none;
-}
-#menu{
-    display: block;
-
-}
-#home{
-    display: block;
-}
-#logo{
-    padding-left: 5px;
-    height: 75px;
-    width: 75px;
-    padding-top: 20px;
-}
-img {
-    height: 110px;
-    width: 100px;
-
-}
-.root{
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 5rem;
-}
-}
-@media only screen and (min-width:281px) and (max-width:440px){
-.root{
-     grid-template-columns: 0.5fr 0.5fr;
-    grid-column-gap: 0.5rem; 
-    margin-top: 40px;
-    /* display: inline;
-    float: right; */
-
-}
-#logo{
-    padding-left: 5px;
-    height: 75px;
-    width: 75px;
-    padding-top: 25px;
-}
-img {
-    height: 85px;
-    width: 85px;
-
-}
-.btn1{
-    font-size: 12px;
-    padding: 6px 3px;
-    margin: 7px 8px;
-    margin-top: 20px;
-
-}
-#navbar ul li a{
-    margin: -17px;
-    font-size: 15px;
-}
-.IITI{
-    margin-left: -10px;
-}
-
-}
-@media only screen and (min-width:410px) and (max-width:500px){
-    .IITI{
-        margin-left: -10px;
+/* @media only screen and (min-width:1700px) and (max-width:2130px){
+    .root{
+         grid-column-gap: 20rem ; 
+    }}
+    @media only screen and (min-width:50px) and (max-width:900px){
+    #navbar:before{
+        height: 85px;
     }
-}
-@media only screen and (min-width:500px) and (max-width:600px){
-    .IITI{
-        margin-left: -10px;
-    }
-}
-
-/* correction of navigation bar acc to phone  */
-/* IPHONE SE  */
-@media only screen and (min-width:360px) and (max-width:600px){
-    .IITI{
-        margin-left: -105px;
-    }
-    #navbar::before{
-        height: 60px;
-        top: 85px;
-    }
-    .container::before{
-        height: 100px;
-
+    #navbar ul li a{
+        font-size: 20px;
     }
     #gate{
-        bottom:50px;
+        bottom: 31px;
     }
-}
-
-@media only screen and (min-width:540px) and (max-width:600px){
-    .IITI{
-        margin-left: -85px;
-        font-size: 30px;
     }
-    #gate{
-        bottom:40px;
+    @media only screen and (min-width:1450px) and (max-width:1700px){
+    .root{
+         grid-column-gap: 15rem ; 
     }
-    #navbar::before{
-        height: 64px;
-        top: 88px;
+    
     }
-    .btn1{
-        margin-top: 14px;
+    @media only screen and (min-width:1250px) and (max-width:1450px){
+    .root{
+         grid-column-gap: 10rem ; 
     }
-}
-@media only screen and (min-width:430px) and (max-width:440px){
-    .IITI{
-        margin-left: -151px;
-        /* font-size: 30px; */
-    }
-    .btn1{
-        margin-top: 33px;
-    }
-}
-@media only screen and (min-width:440px) and (max-width:540px){
-    .IITI{
-        margin-left: -41px;
-        font-size: 25px; 
-    }
-    #gate{
-        bottom:42px;
-    }
-    #navbar::before{
-        height: 74px;
-        top: 85px;
-
-    }
-    .btn1{
-        margin-top: 21px;
-    }
-}
-@media only screen and (min-width:360px) and (max-width:430px){
-    .IITI{
-        margin-left: -122px;
-        font-size: 25px; 
-    }
-    #gate{
-        bottom:42px;
-    }
-    #navbar::before{
-        height: 74px;
-        top: 85px;
-
-    }
-    .btn1{
+    
+    } */
+    @media only screen and (min-width:950px) and (max-width:1215px){
+     /* .IITI{
+        display: block; font-size: 35px;
+        display: inline-block;
+        grid-area: iit;
+        height: 37px;
         margin-top: 30px;
+        color: black;
+    }*/
+    .iit{
+    margin-left: 35px;
+    }  
+    #navbar ul li a{
+        margin: 0px 60px;
     }
-}
-/* @media only screen and (min-width:360px) and (max-width:440px){
-    .IITI{
-        margin-left: -104px;
-        font-size: 15px; 
-    }
-    #navbar::before{
-        height: 84px;
-        top: 65px;
     
-
     }
-    .container::before{
-        height: 50px;
-        top: 20px;
+    @media only screen and (min-width:750px) and (max-width:950px){
+     /* .IITI{
+        display: block; font-size: 35px;
+        display: inline-block;
+        grid-area: iit;
+        height: 37px;
+        margin-top: 30px;
+        color: black;
+    }*/
+    .iit{
+     margin-left: 65px; 
+    } 
+    #navbar ul li a{
+        margin: 0px 60px;
+    }
+    
+    }
+
+    @media only screen and (min-width:520px) and (max-width:750px){
+        #navbar ul li a{
+            margin: 0px 30px;
+        }
+    }
+    @media only screen and (min-width:400px) and (max-width:520px){
+        #navbar ul li a{
+            margin: 0px 20px;
+        }
+        #logo{
+            padding-left: 10px;
+        }
+        nav div img{
+            height: 102px;
+            width: 62px;
+        }
+    }
+    @media only screen and (min-width:320px) and (max-width:400px){
+        #navbar ul li a{
+            margin: 0px -22px;
+            margin-left: 86px;
+        }
         
+        #logo{
+            padding-left: 10px;
+        }
+        nav div img{
+            height: 102px;
+            width: 62px;
+        }
+        .item{
+            display: none;
+        }
+        #home{
+            display: inline-block;
+            
+        }
+        #menu{
+            display: inline-block;
+        }
     }
-    #gate{
-        bottom:55px;
-    }
-    #navbar ul li a {
-        margin-bottom: 20px;
-         
-    }
-    #logo{
-        padding-top: 15px;
+    @media only screen and (min-width:270px) and (max-width:320px){
+        #navbar ul li a{
+            margin: 0px 22px;
+            margin-left: 57px;
+        }
+        
+        #logo{
+            padding-left: 10px;
+        }
+        nav div img{
+            height: 102px;
+            width: 62px;
+        }
+        .item{
+            display: none;
+        }
+        #home{
+            display: inline-block;
+            
+        }
+        #menu{
+            display: inline-block;
+        }
     }
     
-}  */
 
-
-@media only screen and (min-width:320px) and (max-width:360px){
-    .IITI{
-        margin-left: -104px;
-        font-size: 15px; 
-    }
-    #navbar::before{
-        height: 84px;
-        top: 65px;
-        /* display: flex;
-        align-items: center; */
-
-    }
-    .container::before{
-        height: 50px;
-        top: 20px;
-        /* position: relative; */
-    }
-    #gate{
-        bottom:55px;
-    }
-    #navbar ul li a {
-        margin-bottom: 20px;
-         /* font-size: 20px;  */
-    }
-    #logo{
-        padding-top: 15px;
-    }
-    
-}
-@media only screen and (min-width:270px) and (max-width:320px){
-    .IITI{
-        margin-left: -106px;
-        font-size: 15px; 
+    /* iit indore tag in different phone  */
+/* iphone se  */
+@media only screen and (min-width:360px) and (max-width:400px){
+    .iit{
         display: none;
     }
+    .IITI{
+            display: block; font-size: 15px;
+            display: inline-block;
+            grid-area: iit;
+            height: 37px;
+            margin-top: 30px;
+            margin-left: -45px;
+            color: black;
+    }
     #navbar::before{
-        height: 69px;
-        top: 45px;
-
-    }
-    .container::before{
-        height: 50px;
-        top: 120px;
-        /* position: relative; */
-    }
-    .lol{
-        position: relative;
-    }
-    #gate{
-        bottom:50px;
-    }
-    .btn1{
-        bottom: 111px;
-        margin-top:22px ;
-}
-#logo{
-    padding-top: 22px;
-    z-index: 2000;
-}
-}
-
-@media only screen and (min-width:700px) and (max-width:800px){
-    .IITI{
-        margin-left: -88px;
-    }
-}
-@media only screen and (min-width:800px) and (max-width:850px){
-    .IITI{
-        margin-left: -118px;
-    }
-}
-
-/* gate  */
-@media only screen and (min-width:901px) and (max-width:3400px){
- #gate{
-    bottom:18px ;
- }
-}
-/* dir message  */
- @media only screen and (min-width:2250px) and (max-width:2490px){
-#msg p{
-    margin:25px 125px;
-}
-.msgphoto img{
-    left:390px;
-}
-
-
-} 
-@media only screen and (min-width:1980px) and (max-width:2250px){
-#msg p{
-    margin:25px 150px;
-}
-.msgphoto img{
-    left:340px;
-}
-
-
-} 
-@media only screen and (min-width:1800px) and (max-width:1980px){
-#msg p{
-    margin:25px 150px;
-    /* margin-left: 200px; */
-}
-.msgphoto img{
-    left:290px;
-}
-}
-@media only screen and (min-width:1650px) and (max-width:1800px){
-#msg p{
-    margin:25px 150px;
-    /* margin-left: 160px; */
-}
-.msgphoto img{
-    left:260px;
-}}
-@media only screen and (min-width:1500px) and (max-width:1650px){
-#msg p{
-    margin:25px 150px;
-    /* margin-left: 200px; */
-}
-.msgphoto img{
-    left:230px;
-}
-
-}
-@media only screen and (min-width:1360px) and (max-width:1500px){
-#msg p{
-    margin:25px 150px;
-    /* margin-left: 200px; */
-}
-.msgphoto img{
-    left:180px;
-}
-
-}
-@media only screen and (min-width:1280px) and (max-width:1360px){
-#msg p{
-    margin:25px 150px;
-    /* margin-left: 200px; */
-}
-.msgphoto img{
-    left:170px;
-}
-
-}
-
-@media only screen and (min-width:2500px) and (max-width:2600px){
-.msgphoto img{
-    left:390px;}
-
-}
-@media only screen and (min-width:2600px) and (max-width:2700px){
-.msgphoto img{
-    left:390px;}
-
-}
-@media only screen and (min-width:2700px) and (max-width:2800px){
-.msgphoto img{
-    left:402px;}
-
-}
-@media only screen and (min-width:2800px) and (max-width:2900px){
-.msgphoto img{
-    left:414px;}
-
-}
-@media only screen and (min-width:2900px) and (max-width:3000px){
-.msgphoto img{
-    left:426px;}
-
-}
-@media only screen and (min-width:3000px) and (max-width:3100px){
-.msgphoto img{
-    left:438px;}
-
-}
-/* @media only screen and (min-width:2650px) and (max-width:3100px){
-.msgphoto img{
-    top:95px;
-}
-
-}  
-@media only screen and (min-width:2650px) and (max-width:3100px){
-.msgphoto img{
-    top:95px;
-}
-
-} 
-@media only screen and (min-width:3100px) and (max-width:3250px){
-.msgphoto img{
-    top:58px;
-    left:464px;
-}
-
-} 
-@media only screen and (min-width:3250px) and (max-width:3450px){
-.msgphoto img{
-    top:58px;
-    left:484px;
-}
-
-}   */
-
-/* for gate image */
-@media only screen and (min-width:280px) and (max-width:1280px){
-
-#gate{
-    height:500px;
-}
-}
-
-
-
-/* only for director msg  */
-
-@media only screen and (min-width:50px) and (max-width:1280px){
-.msgphoto{
-    flex-wrap: wrap;
-    justify-content: center;
-    border: 14px solid #8CE7D9;
-    background-color:  #E1E8EC;
-}
-.msgphoto img{
-    top: 10px;
-    left: 0px;
-    display: block;
-    height: 150px;
-    padding: 3px 0px;
-    margin: 0px auto;
-}
-#msg{
-    width: 90%;
-    border: 0;
-}
-
-#dirimage{
-width: 50%;
-}
-#msg p{
-margin: 15px 25px;
-}
-.message h3{
-text-align: center;
-margin-left: 0px;
-font-size: 55px;
-}
-@media only screen and (min-width:400px) and (max-width:850px){
-.msgphoto img{
-    width: 200px;
-    height: 110px;
-}
-.message h3{
-    font-size: 40px;
-}
-}
-@media only screen and (min-width:100px) and (max-width:400px){
-.msgphoto img{
-    width: 100px;
-    height: 55px;
-}
-.message h3{
-    font-size: 35px;
-}
-
-#msg{
-    font-size: 30px;
-}
-}
-}
-
-/* for alumni updates  */
-@media only screen and (min-width:600px) and (max-width:1660px){
-    .box{
-         height: 840px; 
-    }
-}
-@media only screen and (min-width:919px) and (max-width:1379px){
-    .box{
-         height: 840px; 
-         width: 45%;
-    }
-    #box3{
-        bottom:-45px ;
-        margin-bottom: 20px;
-        height: 780px;
-    }
-   
-  
-}
-
-@media only screen and (min-width:600px) and (max-width:919px){
-    .box{
-        width: 80%;
-        height: 840px; 
+        height: 47.5px;
+        top:55px;
     }
 
-    #box3{
-        bottom:-45px ;
-        margin-bottom: 20px;
-        height: 790px;
-    } 
-    #box1{
-        margin-bottom :20px;
-    }
-}
-
-@media only screen and (min-width:500px) and (max-width:600px){
-    .box{
-        width: 80%;
-        height: 850px; 
-    }
-    .alumniupdates h2{
-        font-size: 45px;
-    }
-    .read{
-        font-size: 28px;
-    }
-    #box3{
-        bottom:-45px ;
-        margin-bottom: 20px;
-        height: 790px;
-    }
-    #box1{
-        margin-bottom :20px;
-        height:810px;
-    }
 }
 @media only screen and (min-width:400px) and (max-width:500px){
-    .box{
-        width: 85%;
-        height: 790px; 
+    .iit{
+        display: none;
     }
-    .alumniupdates h2{
-        font-size: 45px;
+    .IITI{
+            display: block; font-size: 15px;
+            display: inline-block;
+            grid-area: iit;
+            height: 37px;
+            margin-top: 30px;
+            margin-left: -8px;
+            color: black;
     }
-    .read{
-        font-size: 28px;
+    #navbar::before{
+        height: 47.5px;
+        top:55px;
     }
-    #box3{
-        bottom:-45px ;
-        margin-bottom: 20px;
-        height: 810px;
+
+}
+@media only screen and (min-width:500px) and (max-width:600px){
+    .iit{
+        display: none;
     }
-    #box2{
-        height: 950px;
+    .IITI{
+            display: block; font-size: 15px;
+            display: inline-block;
+            grid-area: iit;
+            height: 37px;
+            margin-top: 30px;
+            margin-left: -49px;
+            color: black;
     }
-    #box1{
-        height: 900px;
+    #navbar::before{
+        height: 47.5px;
+        top:55px;
     }
-    #box1{
-        margin-bottom :20px;
+    nav div img {
+        width: 60px;
+    }
+    #logo{
+        padding-left: 10px;
+    }
+
+}
+@media only screen and (min-width:521px) and (max-width:600px){
+    .iit{
+        display: none;
+    }
+    .IITI{
+            display: block; font-size: 15px;
+            display: inline-block;
+            grid-area: iit;
+            height: 37px;
+            margin-top: 30px;
+            margin-left: -26px;
+            color: black;
+    }
+    #navbar::before{
+        height: 47.5px;
+        top:55px;
+    }
+    #logo{
+        padding-left: 10px;
+    }
+
+}
+@media only screen and (min-width:600px) and (max-width:900px){
+    .iit{
+        display: none;
+    }
+    .IITI{
+            display: block; font-size: 15px;
+            display: inline-block;
+            grid-area: iit;
+            height: 37px;
+            margin-top: 30px;
+            margin-left: -55px;
+            color: black;
+    }
+    #navbar::before{
+        height: 47.5px;
+        top:55px;
+    }
+    #logo{
+        padding-left: 10px;
+    }
+
+}
+@media only screen and (min-width:700px) and (max-width:900px){
+    .IITI{
+        margin-left: -105px;
+        font-size: 20px;
+    }
+}
+@media only screen and (min-width:750px) and (max-width:900px){
+    .IITI{
+        margin-left: -6px;
+        font-size: 20px;
+    }
+}
+@media only screen and (min-width:900px) and (max-width:1100px){
+    .iit{
+        margin-left: -58px;
+        font-size: 20px;
+    }
+}
+@media only screen and (min-width:1100px) and (max-width:1215px){
+    .iit{
+        margin-left: -156px;
+        font-size: 20px;
     }
 }
 
-@media only screen and (min-width:356px) and (max-width:400px){
-    .box{
+@media only screen and (min-width:310px) and (max-width:360px){
+    .iit{
+        display: none;
+    }
+    .IITI{
+            display: block; font-size: 15px;
+            display: inline-block;
+            grid-area: iit;
+            height: 37px;
+            margin-top: 30px;
+            margin-left: -27px;
+            color: black;
+    }
+    #navbar::before{
+        height: 45px;
+        top:55px;
+    }
+    #logo{
+        padding-left: 10px;
+    }
+
+
+}
+@media only screen and (min-width:321px) and (max-width:336px){
+    .IITI{  margin-left: -26px;
+}}
+@media only screen and (min-width:270px) and (max-width:310px){
+    .IITI{  
+        display: none;
+}
+.iit{
+    display: none;
+}
+
+nav ul li a{
+position: relative;
+bottom: 20px;
+margin: 0px 22px;
+margin-left:57px;
+}
+}
+@media only screen and (min-width:311px) and (max-width:320px){
+    nav ul li a{
+        position: relative;
+        bottom: 5px;
+}}
+@media only screen and (min-width:309px) and (max-width:310px){
+    nav ul li a{
+        position: relative;
+        bottom: 17px;
+}}
+@media only screen and (min-width:320px) and (max-width:340px){
+    nav ul li a{
+        position: relative;
+        bottom: 8px;
+}}
+@media only screen and (min-width:340px) and (max-width:400px){
+    nav ul li a{
+        position: relative;
+        bottom: 10px;
+}}
+
+ /* DIRECTOR MSG   */
+
+ @media only screen and (min-width:855px) and (max-width:1050px){
+    #msg p{
+        margin:25px 50px;
+        margin-left: 60px;
+    }
+    .msgphoto img{
+        left:90px;
+    }
+    
+    
+    } 
+ @media only screen and (min-width:700px) and (max-width:855px){
+    #msg p{
+        margin:25px 50px;
+        margin-left: 60px;
+    }
+    .msgphoto img{
+        left:70px;
+    }
+     
+    } 
+ @media only screen and (min-width:600px) and (max-width:700px){
+    #msg p{
+        margin:25px 50px;
+        margin-left: 60px;
+    }
+    .msgphoto img{
+        left:60px;
+    }
+     
+    } 
+ @media only screen and (min-width:600px) and (max-width:700px){
+    #msg p{
+        margin:25px 50px;
+        margin-left: 60px;
+    }
+    .msgphoto img{
+        left:60px;
+    }
+     
+    } 
+    @media only screen and (min-width:50px) and (max-width:600px){
+    .msgphoto{
+        flex-wrap: wrap;
+        justify-content: center;
+        border: 14px solid #8CE7D9;
+        background-color:  #E1E8EC;
+    }
+    .msgphoto img{
+        top: 10px;
+        left: 0px;
+        display: block;
+        height: 150px;
+        padding: 3px 0px;
+        margin: 0px auto;
+    }
+    #msg{
         width: 90%;
-        height: 790px; 
+        border: 0;
     }
-    .read{
-        font-size: 28px;
+    
+    #dirimage{
+    width: 50%;
     }
-    .alumniupdates h2{
-        font-size: 40px;
+    #msg p{
+    margin: 15px 25px;
+    font-size: 16px;
     }
-    #box3{
-        bottom:-45px ;
-        margin-bottom: 20px;
-        height: 810px;
+    .message h3{
+    text-align: center;
+    margin-left: 0px;
+    font-size: 35px;
     }
-    #box2{
-        height: 950px;
-    }
-    #box1{
-        height: 900px;
-    }
-    #box1{
-        margin-bottom :20px;
-    }
-}
-@media only screen and (min-width:200px) and (max-width:356px){
-    .box{
-        width: 97%;
-        height: 900px; 
-    }
-    .box p{
-        font-size: 18px;
-    }
-    .read{
-        font-size: 22px;
-    }
-    .alumniupdates h2{
+    .message h3{
         font-size: 30px;
     }
-    #box3{
-        bottom:-45px ;
-        margin-bottom: 20px;
-        height: 810px;
     }
-    #box2{
-        height: 930px;
-    }
-    #box1{
-        height: 870px;
-    }
-    #box1{
-        margin-bottom :20px;
-    }
+
+    /* ALUMNI UPDATES  */
+
+
+    @media only screen and (min-width:726px) and (max-width:876px){
+        
+        .box{
+         
+            width: 40%;
+            margin: 15px;
+        }
+
+    } 
+    @media only screen and (min-width:600px) and (max-width:726px){
+    
+        .box{
+         
+            width: 40%;
+            margin: 15px;
+            height: 600px;
+        }
+
+    } 
+    @media only screen and (min-width:400px) and (max-width:600px){
+        
+        .box{
+         
+            width: 90%;
+            margin: 15px;
+            height: 520px;
+        }
+
+    } 
+    @media only screen and (min-width:270px) and (max-width:400px){
+        
+        .box{
+         
+            width: 90%;
+            margin: 15px;
+            height: 500px;
+        }
+        #box2{
+            height:560px ;
+        }
+        .read{
+            font-size: 16px;
+        }
+        .box p{
+            font-size: 14px;
+        }
+        .box h6{
+            font-size: 18px;
+        }
+.alumniupdates h2{
+    font-size: 30px;
 }
 
-/* awards */
-@media only screen and (min-width:270px) and (max-width:312px){
+    } 
+
+   /* awards */
+@media only screen and (min-width:270px) and (max-width:500px){
     .info{
-        font-size: 30px;
+        font-size: 25px;
+        padding: 15px 75px;
     }
 }
-@media only screen and (min-width:240px) and (max-width:270px){
+@media only screen and (min-width:270px) and (max-width:310px){
     .info{
-        font-size: 27px;
+        font-size: 20px;
+        padding: 15px 75px;
     }
 }
