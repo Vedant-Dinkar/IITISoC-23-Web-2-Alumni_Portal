@@ -1,0 +1,19 @@
+.sidebar a:nth-child(3) button{    
+    background-color: #595959;
+    color: white;
+}
+
+.maindisplay{
+    margin: 5%;
+    background-color: blanchedalmond;
+}
+.maindisplaypics{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.inline-block{
+    display: inline-block;
+}
+

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block head%}
+<link rel="stylesheet" href="/static/styles/gallery.css">{% endblock %}
+{% block title %}Gallery {% endblock %}
+ {% block content %}
+
+<!-- HTML !-->
+<div class="addeventspicbtn">
+
+    <a href="http://127.0.0.1:5000/galleryext"><button class="button-30" role="button">Add Event's Photos</button></a>
+</div>
+<div class="maindisplay">
+    <h1 class="inline-block">Main Display</h1>
+    
+    <button class="inline-block">EDIT</button>
+    <hr>
+    <div class="maindisplaypics">
+        <div id="pic1"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+        <div id="pic2"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+        <div id="pic3"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+        <div id="pic4"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+        <div id="pic5"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+    </div>
+</div>
+ {% endblock %}

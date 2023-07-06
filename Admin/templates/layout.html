@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Admin - IITI Alumni</title>
-    <link rel="stylesheet" href="admin.css">
+    <!-- <title>Admin - IITI Alumni</title> -->
+    <link rel="stylesheet" href="/static/styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
@@ -11,6 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500display=swap" rel="stylesheet">
+    {% block head%}{% endblock %}
+    <title>
+        {% block title%}{% endblock %}
+    </title>
   </head>
   <body>
 
@@ -20,28 +24,28 @@
 
     <div class="page">
         <div class="sidebar">
-            <a href="./admin.html">
+            <a href="http://127.0.0.1:5000">
                 <button id="Home">Home</button>
             </a>
-            <a href="./events.html">
+            <a href="http://127.0.0.1:5000/events">
                 <button id="Events">Events</button>
             </a>
-            <a href="./gallery.html">
+            <a href="http://127.0.0.1:5000/gallery">
                 <button id="Gallery">Gallery</button>
             </a>
-            <a href="./auth.html">
+            <a href="http://127.0.0.1:5000/auth">
                 <button id="Auth">Authenticate Alumni</button>
             </a>
-            <a href="./mail.html">
+            <a href="http://127.0.0.1:5000/mail">
                 <button id="Mail">Mail</button>
             </a>
-            <a href="./forums.html">
+            <a href="http://127.0.0.1:5000/forums">
                 <button id="Forums">Forums</button>
             </a>
         </div>
 
         <div class="maincontent">
-            Do anything here.
+            {% block content %}{% endblock %}
         </div>
     </div>
 
