@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content=" IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <a href="index.html"> Home </a><br/>
+    <form action="loggedin.html" method="GET">
+
+        <table width=800 align="center" border=2>
+
+            <tr>
+                <td colspan="2" align="center"><h1>Registration Form</h1></td>
+            </tr>
+            <tr>
+                <td><label for="username">Set a Username:</label></td>
+                <td><input type="text" id="username" name="username" required></td>
+            </tr>
+            <tr>
+                <td><label for="psw">Set a Password:</label></td>
+                <td><input type="password" id="psw" required></td>
+            
+            <tr>
+                <td><label for="dob">Please enter your Date of Birth:</label></td>
+                <td><input type="date" name="dob" id="dob"></td>
+
+            <tr>
+                <td>Please select your Gender:</td>
+                <td>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label><br>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label><br>
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">Other</label><br>
+                </td>
+
+            <tr>
+                <td><label>Please Upload your Photograph:</label></td>
+                <td><input type="file" name="pic" id="pic"></td>
+
+            <tr>
+                <td>Please mention your Qualifications:</td>
+                <td>
+                    <input type="checkbox" id="q1" name="q1" value="School">
+                    <label for="male">School</label><br>
+                    <input type="checkbox" id="q2" name="q2" value="Graduation">
+                    <label for="female">Graduation</label><br>
+                    <input type="checkbox" id="q3" name="q3" value="PhD">
+                    <label for="other">PhD</label><br>
+                </td>    
+
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="country">Please select your Country:</label>
+                    <td>
+                        <select name="country" id="country">
+                            <option>Select Your Country</option>
+                            <option value="India">India</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Nepal">Nepal</option>
+                            <option value="Sri Lanka">Sri Lanka</option>
+                            <option value="United States">United States</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Russia">Russia</option>
+                            <option value="None">Other</option>
+                        </select>
+                    </td>
+                </td>
+            
+
+            </tr>
+
+            <tr>
+                <td><label>Please enter your E-Mail ID:</label></td>
+                <td><input type="email" name="emailid" id="emailid" required></td>
+                
+            <tr>
+                <td><label for="bio">Please enter your Bio(Max. 300 Words):</label></td>
+                <td>
+                    <textarea name="bio" id="bio" cols=30 rows=10></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="submit"></td>
+                <td><input type="reset"></td>
+            </tr>
+        </table>
+    </form>
+</body>

@@ -1,0 +1,260 @@
+body{
+  background: white;
+}
+
+.feat{
+  outline: none;
+  user-select: none;
+  margin: 0;
+  background-color: #cb4646 !important;
+  font-family: "Ubuntu", sans-serif !important; 
+}
+
+#ft{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: #cb4646 !important;
+  color: #ffffff;
+  font-family: "Ubuntu", sans-serif !important; 
+}
+
+.boxesf {
+  display: flex;
+}
+
+.profile {
+  width: 330px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 16%;
+  transform: translate(-10%, -50%);
+  border-radius: 5px;
+  background-color: #ff6c6c;
+  box-shadow: 0.5rem 0.5rem 0.5rem #252525;
+  animation: show-profile 0.55s forwards ease-in-out;
+}
+
+@keyframes show-profile {
+  0% {
+    width: 0;
+  }
+}
+
+.profile .photo,
+.profile .content {
+  box-sizing: border-box;
+}
+
+.profile .photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fafafa;
+    background-color: #fafafa;
+    margin-left: -5px;
+    box-shadow: 1rem 1rem 1rem #babbbc;
+    animation: rotate-photo 0.5s forwards ease-in-out;
+  }
+  
+  @keyframes rotate-photo {
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+  
+  .profile .photo img {
+    width: 100%;
+  }
+  
+  .profile .content {
+    padding: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  .profile .content::before {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 150px;
+    background-color: rgb(144, 206, 182);
+    left: 0;
+    top: -20px;
+    z-index: -1;
+    transform: rotate(-8deg);
+  }
+  
+  .profile .text {
+    margin-top: 35px;
+    margin-left: 50px;
+  }
+  
+  .profile .content .text h3,
+  .profile .content .text h6 {
+    font-weight: normal;
+    margin: 3px 0;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  
+  .profile .btn {
+    background-color: #cb4646;
+    background-image: url('./menu.png');
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 25px;
+    top: 21px;
+    border: 4px solid rgb(163, 56, 56);
+    z-index: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    animation: pop-btn 0.3s both ease-in-out 0.5s;
+  }
+  
+  @keyframes pop-btn {
+    0% {
+      opacity: 0;
+    }
+    
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .profile .btn:hover {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  #Me {
+    position: relative;
+    top: 10px;
+    left: 10px;
+  }
+
+  .profile .dabba i{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ececec;
+    font-size: 26px;
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    left: 255px;
+    top: 30px;
+    box-shadow: 0 0 0.5rem #252525;
+    transition-duration: 0.3s;
+    transition-delay: 0s; 
+    transition-duration: 0.5s;
+    animation: pop-btn 0.5s both ease-in-out 0.5s;
+  }
+  
+  .profile .dabba i:hover {
+    transition-delay: initial !important;
+    box-shadow: 0px 0px 0px 5px #babbbc;
+  }
+
+  .profile .dabba i:nth-child(1) {
+    background-color: #FFD166;
+    background-image: url('./Request.png');
+    border: 2px solid darkgrey;
+  }
+  
+  .profile .dabba i:nth-child(2) {
+    background-color: #06D6A0;
+    border: 2px solid grey;
+  }
+  
+  .profile .dabba i:nth-child(3) {
+    background-color: #118AB2;
+    border: 2px solid darkgrey;
+  }
+  
+  .profile .dabba i:nth-child(4) {
+    background-color: #073B4C;
+    border: 2px solid black;
+  }
+
+  
+  .profile .dabba.open {
+    opacity: 1;
+  }
+  
+  .profile .dabba.open i {
+    left: 255px;
+    transition-delay: 0.3s;
+  }
+  
+  .profile .dabba.open i:nth-child(1) {
+    transform: rotate(-90deg) translateX(120px) rotate(90deg);
+    transition-delay: 0.15s;
+  }
+  
+  .profile .dabba.open i:nth-child(2) {
+    transform: rotate(-30deg) translateX(120px) rotate(30deg);
+    transition-delay: 0.3s;
+  }
+  
+  .profile .dabba.open i:nth-child(3) {
+    transform: rotate(30deg) translateX(120px) rotate(-30deg);
+    transition-delay: 0.45s;
+  }
+  
+  .profile .dabba.open i:nth-child(4) {
+    transform: rotate(90deg) translateX(120px) rotate(-90deg);
+    transition-delay: 0.6s;
+  }
+
+/*.profile .dabba.open i:nth-child(1):hover #T1{
+  position: absolute;
+  width: 200px;
+  height: 400px;
+  background-color: yellow;
+  z-index: 100;
+  transition: 0.3s;
+}*/
+
+.T1{
+  background-color: yellow;
+  z-index: 5;
+  width: 8%;
+  height: 40%;
+  top: 30%;
+  left: 50%
+}
+
+.T2{
+  background-color: aquamarine;
+  z-index: 5;
+  width: 8%;
+  height: 40%;
+  top: 30%;
+  left: 60%
+}
+
+.T3{
+  background-color: skyblue;
+  z-index: 5;
+  width: 8%;
+  height: 40%;
+  top: 30%;
+  left: 70%
+}
+
+.T4{
+  background-color: #003153;
+  z-index: 5;
+  width: 8%;
+  height: 40%;
+  top: 30%;
+  left: 80%
+}
