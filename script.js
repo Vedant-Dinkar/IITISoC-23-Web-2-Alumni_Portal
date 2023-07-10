@@ -7,3 +7,4 @@ window.addEventListener('DOMContentLoaded', function() {
       centerDiv.style.opacity = '1';
     }, 100); 
   });
+  
