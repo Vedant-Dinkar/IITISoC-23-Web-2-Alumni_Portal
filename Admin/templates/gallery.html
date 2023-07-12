@@ -20,6 +20,12 @@
         <div id="pic3"><img src="/static/img/pngwing.com (8).png" alt=""></div>
         <div id="pic4"><img src="/static/img/pngwing.com (8).png" alt=""></div>
         <div id="pic5"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+
     </div>
 </div>
+{% for pic in pics %}
+<div class="todo">
+    <p>{{ pic['event_gallery_name'] }} ({{ pic['image_file']}})</p>
+</div>
+{% endfor %}
  {% endblock %}

@@ -1,7 +1,35 @@
 
 {% extends "layout.html" %} 
+{% block head%}
+<link rel="stylesheet" href="/static/styles/mail.css">{% endblock %}
 {% block title %}Mail{% endblock %} 
 
 {% block content %}
-<h2>hey this is Mail</h2>
+<div class="MAILS">
+
+    <div class="sendmailsbtn">
+        
+        <a href="http://127.0.0.1:5000/mailsext"><button class="button-30" role="button">Send Mails</button></a>
+    </div>
+    <div class="prev_events_content">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Subject:Convocation-23</h5>
+              <small>12 September, 2023</small>
+              <small>To:2022batch</small>
+            </div>
+            <p class="mb-1"></p>
+            <small>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A ipsum, eveniet placeat rerum officia soluta veritatis molestias eligendi laboriosam nam quis. Iste quam dolorum deleniti amet numquam adipisci labore Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio adipisci pariatur, quisquam nemo autem porro minus voluptatum magni ducimus quia quam animi impedit! Sapiente debitis quos totam fugiat ipsum rem praesentium porro rerum suscipit a!</quos></small>
+            <!-- <div class="d-grid gap-2 d-md-block">
+              <button class="btn btn-primary" type="button">EDIT</button>
+              <button class="btn btn-primary" type="button">DELETE</button>
+            </div> -->
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+</div>
+
 {% endblock %}

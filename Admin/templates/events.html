@@ -1,7 +1,67 @@
 
 {% extends "layout.html" %} 
+{% block head%}
+<link rel="stylesheet" href="/static/styles/events.css">{% endblock %}
 {% block title %}Events{% endblock %} 
 
 {% block content %}
-<h2>hey this is Events</h2>
+<div class="EVENTS">
+
+  <div class="addeventsbtn">
+    
+    <a href="http://127.0.0.1:5000/eventsext"><button class="button-30" role="button">Add Event</button></a>
+  </div>
+  <hr>
+<!-- <form method="post">
+  <p>
+      <b><label for="event_name">Event Name</label></b>
+  </p>
+  <p>
+      <input type="text" name="event_name"
+          placeholder="Event Name"></input>
+  </p>
+
+  <p>
+      <b><label for="schedule">Schedule</label></b>
+  </p>
+  <p>
+      <input type="date" name="schedule">
+  </p>   
+
+  <p>
+      <b><label for="description">Description</label></b>
+  </p>
+  <p>
+      <input type="text" name="description"
+          placeholder="Description"></input>
+  </p>
+  <button type="submit">Submit</button>
+</form> -->
+  <div class="prev_events">
+    <h3>Latest Events</h3>
+    <div class="prev_events_content">
+      <!-- <ul class="list-group">
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Convocation-23</h5>
+            <small>12 September, 2023</small>
+          </div>
+          <p class="mb-1"></p>
+          <small>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A ipsum, eveniet placeat rerum officia soluta veritatis molestias eligendi laboriosam nam quis. Iste quam dolorum deleniti amet numquam adipisci labore quos.</small>
+          <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary" type="button">EDIT</button>
+            <button class="btn btn-primary" type="button">DELETE</button>
+          </div>
+        </li>
+        
+      </ul> -->
+      {% for event in events %}
+      <div class="todo">
+          <p>{{ event['event_name'] }} <i>({{ event['schedule']}})</i></p>
+      </div>
+  {% endfor %}
+    </div>
+  </div>
+</div>
+
 {% endblock %}
