@@ -11,23 +11,22 @@
     </p>
     <p>
         <input type="text" name="event_name"
-            placeholder="Event Name"></input>
+            placeholder="Event Name" required></input>
     </p>
   
     <p>
         <b><label for="schedule">Schedule</label></b>
     </p>
     <p>
-        <input type="date" name="schedule">
+        <input type="date" name="schedule" required>
     </p>   
   
     <p>
         <b><label for="description">Description</label></b>
     </p>
     <p>
-        <input type="text" name="description"
-            placeholder="Description"></input>
+    <textarea name="description" id="" cols="30" rows="10" required></textarea>
     </p>
-    <button type="submit">Submit</button>
+    <button class="button-30" type="submit">Submit</button>
   </form>
 {% endblock %}

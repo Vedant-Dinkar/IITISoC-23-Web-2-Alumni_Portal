@@ -3,8 +3,6 @@ from pymongo import MongoClient
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import gridfs
-import io
-from PIL import Image
 from email.message import EmailMessage
 import ssl
 import smtplib
@@ -47,10 +45,12 @@ def eventsext():
         return redirect(url_for('events'))
     return render_template('eventsext.html')
 
-# @app.post('/<id>/delete/')
-# def delete(id):
-#     events.delete_one({"_id": ObjectId(id)})
-#     return redirect(url_for('events'))
+@app.post('/events/<id>/delete/')
+def delete(id):
+    # eventtobedeleted={'_id':ObjectId(id)}
+    EVENTS.delete_one({"_id":ObjectId(id)})
+    # events.delete_one(eventtobedeleted)
+    return redirect(url_for('events'))
 
 
 @app.route('/events')

@@ -23,9 +23,8 @@
 
     </div>
 </div>
-{% for pic in pics %}
-<div class="todo">
-    <p>{{ pic['event_gallery_name'] }} ({{ pic['image_file']}})</p>
-</div>
+{% for image in images %}
+    <p>Name={{image['filename']}}</p>
+    <p>Image={{image['_id']}}</p>
 {% endfor %}
  {% endblock %}
