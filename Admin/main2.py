@@ -3,7 +3,19 @@ from pymongo import MongoClient
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import gridfs
-import os
+import io
+from PIL import Image
+from email.message import EmailMessage
+import ssl
+import smtplib
+from datetime import date
+
+
+
+
+
+
+
 
 
 app = Flask(__name__)
@@ -13,7 +25,7 @@ app.config['MONGO_URI']='mongodb://localhost:27017'
 mongo=PyMongo(app)
 db = client.Alumni_Admin
 EVENTS = db.Events
-# GALLERY=db.event_gallery
+MAILS=db.Mails
 fs=gridfs.GridFS(db)
 
 
@@ -21,6 +33,9 @@ fs=gridfs.GridFS(db)
 @app.route('/')
 def hello():
     return render_template('home.html')
+
+
+#---------------------------EVENTS---------------------------------
 
 @app.route('/eventsext', methods=('GET', 'POST'))
 def eventsext():
@@ -47,6 +62,10 @@ def events():
 
 
 
+
+
+# --------------------------------------GALLERY--------------
+
 @app.route('/galleryext', methods=('GET', 'POST'))
 def gallerysext():
     if request.method=='POST':
@@ -64,25 +83,67 @@ def gallerysext():
 
 @app.route('/gallery')
 def gallery():
-    return render_template('gallery.html')
+    images=fs.find()
+    return render_template('gallery.html', images=images)
 
 
 @app.route('/auth')
 def auth():
     return render_template('layout.html')
 
+
+
+
+
+
+
+# --------------------------MAILS----------------------------------------
 @app.route('/mail')
 def mail():
-    return render_template('mail.html')
+    all_mails=MAILS.find()
+    return render_template('mail.html',mails=all_mails)
+
+@app.route('/mailsext', methods=['GET','POST'])
+def mailsext():
+    email_sender='cse220001020@iiti.ac.in'
+    email_password='cbkdnqyakmtiekdh'   
+    if request.method=='POST':
+        email_receiver=request.form['email']
+        subject=request.form['subject']
+        body=request.form['message']
+        today=date.today()
+        today_string = today.strftime("%Y-%m-%d")
 
 
+        MAILS.insert_one({'to': email_receiver, 'subject': subject, 'body':body,'date':today_string})
+
+        em=EmailMessage()
+        em['From']=email_sender
+        em['To']=email_receiver
+        em['Subject']=subject
+        em.set_content(body)
+
+        context=ssl.create_default_context()
+
+        with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+            smtp.login(email_sender,email_password)
+            smtp.sendmail(email_sender,email_receiver,em.as_string())
+        return redirect(url_for('mail'))
+    return render_template('mailsext.html')
+
+
+
+
+
+
+
+
+
+# --------------------------------FORUMS------------------------
 @app.route('/forums')
 def forums():
     return render_template('forums.html')
 
-@app.route('/mailsext')
-def mailsext():
-    return render_template('mailsext.html')
 
 
 

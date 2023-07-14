@@ -5,22 +5,13 @@
 {% block title %}Forums{% endblock %} 
 
 {% block content %}
-<form action="">
+<h1>{{success}}</h1>
+<form method="post">
+    <input type="email" name="email" placeholder="Email" required id="">
+    <input type="text" name="subject" placeholder="Subject" required id="" >
+    <textarea name="message" id="" cols="30" rows="10" required placeholder="message body"></textarea>
+    <input type="submit" value="Send Message">
 
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">To:</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Event's Name">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Schedule</label><br>
-        <input type="date" name="schedule">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Event's Description"></textarea>
-    </div>
-    <div class="mb-3" id="BTN">
-        <input type="submit" id="submitbtn">
-    </div>
+
 </form>
 {% endblock %}

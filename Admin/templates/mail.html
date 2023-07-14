@@ -13,19 +13,18 @@
     </div>
     <div class="prev_events_content">
         <ul class="list-group">
+          {% for mail in mails%}
           <li class="list-group-item">
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Subject:Convocation-23</h5>
-              <small>12 September, 2023</small>
-              <small>To:2022batch</small>
+              <h5 class="mb-1">Subject:{{mail['subject']}}</h5>
+              <small>{{mail['date']}}</small>
+              <small>To:{{mail['to']}}</small>
             </div>
             <p class="mb-1"></p>
-            <small>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A ipsum, eveniet placeat rerum officia soluta veritatis molestias eligendi laboriosam nam quis. Iste quam dolorum deleniti amet numquam adipisci labore Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio adipisci pariatur, quisquam nemo autem porro minus voluptatum magni ducimus quia quam animi impedit! Sapiente debitis quos totam fugiat ipsum rem praesentium porro rerum suscipit a!</quos></small>
-            <!-- <div class="d-grid gap-2 d-md-block">
-              <button class="btn btn-primary" type="button">EDIT</button>
-              <button class="btn btn-primary" type="button">DELETE</button>
-            </div> -->
+            <small>{{mail['body']}}</small>
+
           </li>
+          {% endfor %}
           
         </ul>
       </div>
