@@ -9,22 +9,30 @@
 
     <a href="http://127.0.0.1:5000/galleryext"><button class="button-30" role="button">Add Event's Photos</button></a>
 </div>
-<div class="maindisplay">
-    <h1 class="inline-block">Main Display</h1>
-    
-    <button class="inline-block">EDIT</button>
-    <hr>
-    <div class="maindisplaypics">
-        <div id="pic1"><img src="/static/img/pngwing.com (8).png" alt=""></div>
-        <div id="pic2"><img src="/static/img/pngwing.com (8).png" alt=""></div>
-        <div id="pic3"><img src="/static/img/pngwing.com (8).png" alt=""></div>
-        <div id="pic4"><img src="/static/img/pngwing.com (8).png" alt=""></div>
-        <div id="pic5"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+<div class="scroll">
 
+    <div class="maindisplay">
+        <h1 class="inline-block">Main Display</h1>
+        
+        <button class="inline-block">EDIT</button>
+        <hr>
+        <div class="maindisplaypics">
+            <div id="pic1"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+            <div id="pic2"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+            <div id="pic3"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+            <div id="pic4"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+            <div id="pic5"><img src="/static/img/pngwing.com (8).png" alt=""></div>
+            
+        </div>
+    </div>
+
+    <div class="event_display">
+
+        {% for image_name in image_names %}
+        <!-- <h2>{{ image_name }}</h2> -->
+        <img src="{{ url_for('display_image', filename=image_name) }}" width="300" height="200" alt="{{ image_name }}">
+        
+        {% endfor %}
     </div>
 </div>
-{% for image in images %}
-    <p>Name={{image['filename']}}</p>
-    <p>Image={{image['_id']}}</p>
-{% endfor %}
  {% endblock %}
