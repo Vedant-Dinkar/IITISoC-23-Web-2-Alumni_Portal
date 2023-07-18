@@ -33,6 +33,11 @@ def login():
 def events():
     return render_template('events.html')
 
+# jobs---------------------------------------------------------------------------------
+@app.route('/jobs.html')
+def jobs():
+    return render_template('jobs.html')
+
 # chat app---------------------------------------------------------------------------------
 rooms = {}
 
