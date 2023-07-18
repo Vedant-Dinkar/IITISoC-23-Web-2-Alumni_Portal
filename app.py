@@ -28,6 +28,11 @@ def index():
 def login():
     return render_template('login.html')
 
+# events extension----------------------------------------------------------------------
+@app.route('/events.html')
+def events():
+    return render_template('events.html')
+
 # chat app---------------------------------------------------------------------------------
 rooms = {}
 
