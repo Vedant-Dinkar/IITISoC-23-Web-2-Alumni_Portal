@@ -63,40 +63,45 @@
         </div>
         <section class="PROFILEPAGE">
             <div class="profilepage">
-                <div class="name ">
+                <div class="ppam33 crater36">
+                <div class="name  ">
                     <div class="imgbox box" id="box1">
                         <img src="../static/profile.jpeg" alt="">
                     </div>
                     <div class="infopersonal box">
-                        <h3>S. Radhakrishna</h3>
-                        <p>Department: Computer Science and Engineering</p>
-                        <p>Batch: 2017</p>
-                        <p>Company: Google</p>
-                        <p>Location: New York, USA</p>
-                        <button class="connectbtn">Connect</button>
+                        <h3>{{ extracted_info.first_name }} {{ extracted_info.last_name }} </h3>
+                        <p>Headline: {{ extracted_info.headline }}</p>
+                        <!-- <p>Batch: 2017</p> -->
+                        <p>Company: {% for company in extracted_info.companies %}{{ company }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+                        <p>Location:{{ extracted_info.location_name }}</p>
+                        <button class="connectbtn"><a href="https://www.linkedin.com/">Go to Linkedin</a></button>
                     </div>
                 </div>
 
                 <div class="aboutme box">
                     <h3>About Me</h3>
                     <div class="horizontalline1"></div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste aspernatur ratione nobis
-                        reprehenderit repudiandae aliquid quibusdam perferendis doloremque! Aut, Lorem, ipsum dolor sit
-                        amet consectetur adipisicing elit. Perferendis minima accusantium placeat culpa quas beatae
-                        delectus porro eligendi tempora error? </p>
+                    <p>{{ extracted_info.headlines }} </p>
                 </div>
+            </div>
 
-                <div class="accessibility">
+                <div class="accessibility crater36">
                     <h3>Accessibility</h3>
                     <div class="horizontalline2"></div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, molestias est maiores labore
-                        deleniti magnam possimus quidem consequatur impedit libero ex exercitationem modi. Vero ratione
-                        obcaecati sapiente harum explicabo natus non iusto fuga iste dolore tenetur, dolor, suscipit
-                        earum magnam facere, tempora saepe vitae officiis ut placeat ex quos soluta doloremque
-                        consequuntur? Commodi nulla quaerat cupiditate nisi ipsum recusandae? Nam?</p>
+                  <!-- <button class="chatbtn34  btn35"> <img src="../static/accessibility/chats.png" alt="" class="aimg47"></button>
+                  <button class="searchbtn34  btn35"> <img src="../static/accessibility/search.png" alt="" class="aimg47"></button>
+                  <button class="searchbtn34  btn35"> <img src="../static/accessibility/events.png" alt="" class="aimg47"></button>
+                  <button class="searchbtn34  btn35"><img src="../static/accessibility/gallery.png" alt=""></button>
+                  <button class="searchbtn34  btn35"><img src="../static/accessibility/jobs.png" alt="" class="aimg47"></button> -->
+
+                  <button class="chatbtn34  btn35"><a href="./chat.html">Chat</a></button>
+                  <button class="searchbtn34  btn35"><a href="">Search</a></button>
+                  <button class="searchbtn34  btn35"><a href="">Events</a></button>
+                  <button class="searchbtn34  btn35"><a href="">Gallery</a></button>
+                  <button class="searchbtn34  btn35"><a href="">Post Job</a></button>
                 </div>
 
-                <div class="events">
+                <div class="events crater36">
                     <div class="scroll-bg">
                         <div class="scroll-div">
                             <div class="scroll-object">

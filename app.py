@@ -188,4 +188,4 @@ def profile():
     return render_template('profile.html', extracted_info=extracted_info)
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    socketio.run(app,port=2000, debug=True)
