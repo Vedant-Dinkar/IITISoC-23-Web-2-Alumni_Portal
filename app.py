@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for,session,g
+from flask import Flask, render_template, request, redirect, url_for, session,g
 from flask_socketio import join_room, leave_room, send, SocketIO
 import random
 from string import ascii_uppercase
+from pymongo import MongoClient
 from linkedin_api import Linkedin
 from database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -16,6 +17,12 @@ socketio = SocketIO(app)
 #         g.sqlite_db.close()
 
 
+# Connect to MongoDB-----------------------------------------------------------------------
+
+client = MongoClient("mongodb://localhost:27017/")
+db = client["chat_app"]
+messages_collection = db["messages"]
+
 
 # home ----------------------------------------------------------------------------------
 @app.route('/')
@@ -28,15 +35,18 @@ def index():
 def login():
     return render_template('login.html')
 
+
 # events extension----------------------------------------------------------------------
 @app.route('/events.html')
 def events():
     return render_template('events.html')
 
+
 # jobs---------------------------------------------------------------------------------
 @app.route('/jobs.html')
 def jobs():
     return render_template('jobs.html')
+
 
 # chat app---------------------------------------------------------------------------------
 rooms = {}
@@ -84,7 +94,7 @@ def chat():
 def room():
     room = session.get("room")
     if room is None or session.get("name") is None or room not in rooms:
-        return redirect(url_for("home"))
+        return redirect(url_for("chat"))
 
     return render_template("room.html", code=room, messages=rooms[room]["messages"])
 
@@ -100,6 +110,7 @@ def message(data):
     }
     send(content, to=room)
     rooms[room]["messages"].append(content)
+    messages_collection.insert_one(content)  # Store the message in MongoDB
     print(f"{session.get('name')} said: {data['data']}")
 
 @socketio.on("connect")
@@ -130,6 +141,7 @@ def disconnect():
     
     send({"name": name, "message": "has left the room"}, to=room)
     print(f"{name} has left the room {room}")
+
 
 # linkedinapi------------------------------------------------------------------------------
 

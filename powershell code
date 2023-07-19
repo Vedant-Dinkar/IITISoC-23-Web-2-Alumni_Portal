@@ -30,3 +30,43 @@ create table users(id integer primary key autoincrement,name text,location text)
 for login database:
 Get-Content schema.sql | sqlite3 login.db 
 sqlite3 login.db
+
+
+
+git config --global user.name"Parth Deshmukh"
+git config --global user.email"deshmukhparth293@gmail.com"
+git config --global --edit
+
+
+mkdir LetsLearnGit- to make dir
+cd LetsLearnGit
+git init
+git add tut.cpp -it add file to staging area
+git status -shows status of git
+git commit -m"initial commit"
+git log-shows all commits
+git add .  - all add files to staging area
+
+git checkout hashcode of required commit
+git checkout master
+
+git branch dev-create dev branch
+git branch -shows branch
+
+git  checkout -b parth/multiply - create branch name with parth/multiply
+
+git checkout dev-changes branch to dev
+
+git merge parth/multiply -it merges the req branch with the branch which is open
+
+cd .. -to come out of directory
+
+git clone link
+
+
+git checkout --orphan major 
+git rm --cached -r .
+
+git switch -f main  -if not changing branch
+
+git config push.default current
