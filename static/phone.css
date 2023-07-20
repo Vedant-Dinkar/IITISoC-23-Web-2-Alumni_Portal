@@ -241,3 +241,103 @@ nav .fa{
     margin-top: -15px;
     font-size: 20px;
 }
+
+/* iphone xr------------------------------------------------------------------------------------ */
+@media(max-width:425px){
+    
+.welcome{
+    float: right !important;
+    margin-right: 50px !important;
+    font-size: 30px !important;
+    color: #fff !important;
+    margin-top: 20% !important;
+}
+ #wel{
+    margin-left: 120px !important;                    /*changed*/
+} 
+
+.header{
+    min-height: 50vh;
+}
+
+/* ------------------------aboutus------------------------------------------------------------------------------------------- */
+
+.aboutcontainer{
+    display: block;
+}
+.aboutcontainer div img{
+    height: 100px;
+    width: 100%;
+    height: fit-content;
+}
+.boxbox{
+    /* border: 2px solid red; */
+    /* height: 50px; */
+    margin:6px auto;
+    padding: 3px 6px;
+}
+#box61{
+    width: 80%;
+    /* height: 300px;    */
+    
+}
+#box62{
+    width: 80%;
+    margin-top: 36px;
+    /* padding: 0px 22px; */
+}
+
+
+/* --------------events------------------------------------------------------------------------------------------------------------- */
+.eventscontainer{
+    width: 100%;
+    display: inline-block;
+    justify-content: center;
+    margin: 35px 0px;
+}
+.carton{
+    margin: 7px 0px;
+     margin-right: 45px; 
+    /* /* display: flex; */
+    align-items: center;
+    justify-content: center; 
+
+}
+.carton h5{
+    font-size: 45px;
+    writing-mode: horizontal-tb;
+    transform:rotate(0deg);
+
+}
+#carton1{
+    width: 100%;
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+#carton2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%; 
+    height: 300px; 
+    margin:10px auto ;
+    border-left: 30px solid #176B87;
+    border-right: 30px solid #176B87;
+    border-top: 15px solid #176B87;
+    border-bottom: 15px solid #176B87;
+    /* background-color: #176B87; */
+    border-radius: 29px;
+    /* margin-right: 50px; */
+}
+ /* #carton2 img{
+     width: 100%; 
+} */
+.sliderimg{
+     width: 80%; 
+    height:272px;
+} 
+
+
+}

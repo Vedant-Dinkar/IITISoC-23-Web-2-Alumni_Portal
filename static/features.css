@@ -23,8 +23,8 @@
 
 #prof {
   width: 330px;
-  height: 100px;
-  position: absolute;
+  /* height: 100px; */
+  position: absolute; 
   top: 50%;
   left: 16%;
   transform: translate(-10%, -50%);

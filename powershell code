@@ -31,7 +31,7 @@ for login database:
 Get-Content schema.sql | sqlite3 login.db 
 sqlite3 login.db
 
-
+git----------------------------------------------------------------------------------
 
 git config --global user.name"Parth Deshmukh"
 git config --global user.email"deshmukhparth293@gmail.com"

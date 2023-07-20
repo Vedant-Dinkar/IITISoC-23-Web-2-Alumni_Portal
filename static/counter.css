@@ -18,6 +18,7 @@
   }
   
   .ctrs {
+    /* background-image: url('../static/CounterBooks.png'); */
     width: 100%;
     position: absolute;
     top: 0;
@@ -47,4 +48,20 @@
     color: white;
   }
 
-  
+  /* iphone xr------------------------------------------------------------------------------------ */
+@media(max-width:425px){
+
+  .ctrs {
+    background-image: url('../static/CounterBooks.png');
+    flex-wrap: wrap;
+  }
+  .ctr img{
+    display: none;
+  }
+
+  .ctrs ul li {
+    font-size: 20px;
+    list-style: none;
+    /* margin: 10px; */
+  }
+}
