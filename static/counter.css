@@ -53,7 +53,11 @@
 
   .ctrs {
     background-image: url('../static/CounterBooks.png');
+    background-position: center;
+    background-size: cover;
     flex-wrap: wrap;
+    /* position: relative; */
+    /* z-index: 100000; */
   }
   .ctr img{
     display: none;

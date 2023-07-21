@@ -219,6 +219,10 @@ nav .fa{
     height:440px;
 } 
 
+.promax314{
+    display: none;
+}
+
 
 /* utility classes  */
 .center{
@@ -337,7 +341,32 @@ nav .fa{
 .sliderimg{
      width: 80%; 
     height:272px;
+    /* z-index: -10000; */
 } 
 
+/* -------------------------------gallery-----------------------------------------------------------------------------------------------------------/ */
+    .gallery{
+        display: none;
+    }
+    .promax314{
+        display: block;
+        width: 100%;
+        margin: 45px auto;
+        margin-bottom: 22px;
+        height: 320px;
 
+
+    }
+    .carousel-item img{
+        width: fit-content;
+    }
+
+    .promax314 h5{
+        font-size: 45px;
+    }
+    /* ---------------------------------------------------------------------------------from the alumni------------------------------  */
+    .From_the_Alumni h2{
+        font-size: 45px;
+        text-align: center;
+    }
 }
