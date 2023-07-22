@@ -531,3 +531,9 @@ margin-left:57px;
     font-size: 25px;
     
 }
+@media(max-width:425px){
+    .IITI{
+        margin-left: 10px;
+        font-size: 20px;
+    }
+}
