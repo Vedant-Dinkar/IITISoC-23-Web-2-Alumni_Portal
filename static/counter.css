@@ -6,6 +6,10 @@
   body {
     margin: 0;
   }
+
+  .num37{
+    display: none;
+  }
   
   .bos {
     height: 1000px;
@@ -64,8 +68,35 @@
   }
 
   .ctrs ul li {
-    font-size: 20px;
+    font-size: 30px;
     list-style: none;
     /* margin: 10px; */
+  }
+
+  .feat{
+    display: none;
+  }
+  .ctr{
+    display: none;
+  }
+  .num37{
+    display: block;
+    background-image: url('../static/CounterBooks.png');
+    /* background-position: center; */
+    background-size: cover;
+    /* display: flex;
+    flex-wrap: wrap; */
+  }
+  .num37 div {
+    font-size: 25px;
+    color: white;
+    margin: 25px 6px;
+    text-align: center;
+  }
+  #mm1{
+    padding-top:20px ;
+  }
+  #mm3{
+    padding-bottom:20px ;
   }
 }
