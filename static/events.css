@@ -191,7 +191,11 @@ nav .fa{
 
 @media(max-width:425px){
 .header{
-    min-height: 54vh;
+    min-height: 58vh;
+}
+.navitems{
+    height: 58vh;
+
 }
 .eh{
     font-size: 45px;
