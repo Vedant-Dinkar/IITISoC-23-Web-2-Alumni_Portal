@@ -91,7 +91,7 @@ nav .fa{
     .navitems{
         position: absolute;
         background: #f44336;
-        height:100vh;
+        height:100%;
         width: 200px;
         top: 0;
         right:-200px;
