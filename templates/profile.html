@@ -31,7 +31,7 @@
         </div>
     </div>
      -->
-     <div class="lol">
+    <div class="lol">
 
         <div class="container">
             <nav id="navbar">
@@ -64,41 +64,42 @@
         <section class="PROFILEPAGE">
             <div class="profilepage">
                 <div class="ppam33 crater36">
-                <div class="name  ">
-                    <div class="imgbox box" id="box1">
-                        <img src="../static/profile.jpeg" alt="">
+                    <div class="name  ">
+                        <div class="imgbox box" id="box1">
+                            <img src="../static/profile.jpeg" alt="">
+                        </div>
+                        <div class="infopersonal box">
+                            <h3>{{ extracted_info.first_name }} {{ extracted_info.last_name }} </h3>
+                            <p>Headline: {{ extracted_info.headline }}</p>
+                            <!-- <p>Batch: 2017</p> -->
+                            <p>Company: {% for company in extracted_info.companies %}{{ company }}{% if not loop.last
+                                %}, {% endif %}{% endfor %}</p>
+                            <p>Location:{{ extracted_info.location_name }}</p>
+                            <button class="connectbtn"><a href="https://www.linkedin.com/">Go to Linkedin</a></button>
+                        </div>
                     </div>
-                    <div class="infopersonal box">
-                        <h3>{{ extracted_info.first_name }} {{ extracted_info.last_name }} </h3>
-                        <p>Headline: {{ extracted_info.headline }}</p>
-                        <!-- <p>Batch: 2017</p> -->
-                        <p>Company: {% for company in extracted_info.companies %}{{ company }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
-                        <p>Location:{{ extracted_info.location_name }}</p>
-                        <button class="connectbtn"><a href="https://www.linkedin.com/">Go to Linkedin</a></button>
-                    </div>
-                </div>
 
-                <div class="aboutme box">
-                    <h3>About Me</h3>
-                    <div class="horizontalline1"></div>
-                    <p>{{ extracted_info.headlines }} </p>
+                    <div class="aboutme box">
+                        <h3>About Me</h3>
+                        <div class="horizontalline1"></div>
+                        <p>{{ extracted_info.headlines }} </p>
+                    </div>
                 </div>
-            </div>
 
                 <div class="accessibility crater36">
                     <h3>Accessibility</h3>
                     <div class="horizontalline2"></div>
-                  <!-- <button class="chatbtn34  btn35"> <img src="../static/accessibility/chats.png" alt="" class="aimg47"></button>
+                    <!-- <button class="chatbtn34  btn35"> <img src="../static/accessibility/chats.png" alt="" class="aimg47"></button>
                   <button class="searchbtn34  btn35"> <img src="../static/accessibility/search.png" alt="" class="aimg47"></button>
                   <button class="searchbtn34  btn35"> <img src="../static/accessibility/events.png" alt="" class="aimg47"></button>
                   <button class="searchbtn34  btn35"><img src="../static/accessibility/gallery.png" alt=""></button>
                   <button class="searchbtn34  btn35"><img src="../static/accessibility/jobs.png" alt="" class="aimg47"></button> -->
 
-                  <button class="chatbtn34  btn35"><a href="./chat.html">Chat</a></button>
-                  <button class="searchbtn34  btn35"><a href="">Search</a></button>
-                  <button class="searchbtn34  btn35"><a href="./#events33">Events</a></button>
-                  <button class="searchbtn34  btn35"><a href="./#gallerypic">Gallery</a></button>
-                  <button class="searchbtn34  btn35"><a href="./jobs.html">Post Job</a></button>
+                    <button class="chatbtn34  btn35"><a href="./chat.html">Chat</a></button>
+                    <button class="searchbtn34  btn35"><a href="">Search</a></button>
+                    <button class="searchbtn34  btn35"><a href="./#events33">Events</a></button>
+                    <button class="searchbtn34  btn35"><a href="./#gallerypic">Gallery</a></button>
+                    <button class="searchbtn34  btn35"><a href="./jobs.html">Post Job</a></button>
                 </div>
 
                 <div class="events crater36">
