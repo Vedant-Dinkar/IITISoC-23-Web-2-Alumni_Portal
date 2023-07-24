@@ -66,6 +66,15 @@ def generate_unique_code(length):
     
     return code
 
+def get_global_chat_room():
+    global_room = "GLOBAL"
+    if global_room not in rooms:
+        rooms[global_room] = {"members": 0, "messages": []}
+    return global_room
+
+def get_rooms_list():
+    return list(rooms.keys())
+
 @app.route("/chat.html", methods=["POST", "GET"])
 def chat():
     session.clear()
@@ -80,19 +89,21 @@ def chat():
 
         if join != False and not code:
             return render_template("chat.html", error="Please enter a room code.", code=code, name=name)
-        
+
         room = code
         if create != False:
             room = generate_unique_code(4)
             rooms[room] = {"members": 0, "messages": []}
+        elif code.upper() == "GLOBAL":
+            room = get_global_chat_room()
         elif code not in rooms:
             return render_template("chat.html", error="Room does not exist.", code=code, name=name)
-        
+
         session["room"] = room
         session["name"] = name
         return redirect(url_for("room"))
 
-    return render_template("chat.html")
+    return render_template("chat.html", rooms=get_rooms_list())
 
 @app.route("/room")
 def room():
@@ -100,7 +111,7 @@ def room():
     if room is None or session.get("name") is None or room not in rooms:
         return redirect(url_for("chat"))
 
-    return render_template("room.html", code=room, messages=rooms[room]["messages"])
+    return render_template("room.html", code=room, messages=rooms[room]["messages"], rooms=get_rooms_list())
 
 @socketio.on("message")
 def message(data):
@@ -114,7 +125,7 @@ def message(data):
     }
     send(content, to=room)
     rooms[room]["messages"].append(content)
-    messages_collection.insert_one(content)  # Store the message in MongoDB
+    messages_collection.insert_one(content)
     print(f"{session.get('name')} said: {data['data']}")
 
 @socketio.on("connect")
@@ -124,9 +135,12 @@ def connect(auth):
     if not room or not name:
         return
     if room not in rooms:
-        leave_room(room)
-        return
-    
+        if room.upper() == "GLOBAL":
+            room = get_global_chat_room()
+        else:
+            leave_room(room)
+            return
+
     join_room(room)
     send({"name": name, "message": "has entered the room"}, to=room)
     rooms[room]["members"] += 1
