@@ -6,6 +6,9 @@ from pymongo import MongoClient
 from linkedin_api import Linkedin
 from database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
+import pandas as pd
+import pymongo 
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "hjhjsdahhds"
@@ -20,8 +23,9 @@ socketio = SocketIO(app)
 # Connect to MongoDB-----------------------------------------------------------------------
 
 client = MongoClient("mongodb://localhost:27017/")
-db = client["chat_app"]
+db = client["_app_"]
 messages_collection = db["messages"]
+profiles_collection = db["profiles"]  # Create a new collection for storing LinkedIn profiles
 
 
 # home ----------------------------------------------------------------------------------
@@ -197,6 +201,27 @@ def get_profile():
 
     return redirect(url_for('profile', **extracted_info))
 
+# ---------------------new excel code-----------------------------------------------------------------------
+def load_profiles_from_excel(excel_file):
+    # Load the existing profiles from the Excel file into a DataFrame
+    if os.path.exists(excel_file):
+        df = pd.read_excel(excel_file, engine="openpyxl")
+    else:
+        df = pd.DataFrame()
+    return df
+
+
+def profile_exists(profiles_collection, extracted_info):
+    # Check if the profile already exists in the MongoDB collection based on specific columns
+    existing_profile = profiles_collection.find_one({
+        "location_name": extracted_info["location_name"],
+        "first_name": extracted_info["first_name"],
+        "last_name": extracted_info["last_name"],
+        "headline": extracted_info["headline"]
+    })
+
+    return existing_profile is not None
+
 @app.route('/profile', methods=['GET'])
 def profile():
     extracted_info = {
@@ -205,8 +230,23 @@ def profile():
         "last_name": request.args.get('last_name'),
         "headline": request.args.get('headline'),
         "companies": request.args.getlist('companies'),
-        "headlines": request.args.getlist('headlines')
+        "headlines": request.args.getlist('headlines'),
+        # "url": profile_url  # Include the LinkedIn profile URL in the extracted_info dictionary
     }
+   # Store the profile information in MongoDB
+    if not profile_exists(profiles_collection, extracted_info):
+        profiles_collection.insert_one(extracted_info)
+
+        # Save the profile information in an Excel file
+        excel_file = "profile_info.xlsx"
+        df = load_profiles_from_excel(excel_file)
+
+        # Append the new profile information to the DataFrame
+        df = pd.concat([df, pd.DataFrame([extracted_info])], ignore_index=True)
+
+        # Save the DataFrame to the Excel file
+        df.to_excel(excel_file, index=False, engine="openpyxl")
+
     return render_template('profile.html', extracted_info=extracted_info)
 
 if __name__ == "__main__":
