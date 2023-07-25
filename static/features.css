@@ -1,3 +1,6 @@
+.function38{
+  display: none;
+}
 .feat{
   position: relative;
   outline: none;
@@ -264,4 +267,38 @@
 .dabba i img{
   position: relative;
   bottom: 9px;
+}
+
+/* -----------iphonexr+----------------------------------------------------------------------- */
+@media(max-width:425px){
+  .function38{
+    display: block;
+    margin: 50px 0px;
+  }
+  .hole39{
+    padding: 10px 10px;
+    background-color: #001C30;
+    
+  }
+  .hole39 a img{
+    width:94%;
+    display: block;
+    margin: 10px auto;
+    margin-top: 15px;
+  }
+  .hole39 a{
+    text-decoration: none;
+  }
+  .ppinfo39{
+    font-size: 30px;
+    padding: 5px 0px;
+    text-align: center;
+    color: white;
+  }
+  #hole396{
+    background-color: #FFFFF0;
+  }
+  .ppinfo396{
+    color: black;
+  }
 }

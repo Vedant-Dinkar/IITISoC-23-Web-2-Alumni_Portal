@@ -186,3 +186,37 @@ nav .fa{
     background-color: purple;
 
 }
+
+/* ---------------iphonexr version----------------------------------------------------------------------- */
+
+@media(max-width:425px){
+.header{
+    min-height: 58vh;
+}
+.navitems{
+    height: 58vh;
+
+}
+.eh{
+    font-size: 45px;
+    left: 30%;
+    /* display: block;
+    margin:0px auto; */
+    
+}
+    .sbox31{
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+    }
+    .smallbox32{
+        width: 95%;
+        margin: 15px auto;
+    }
+    .smallbox32 h3{
+        font-size: 25px;
+    }
+    .smallbox32 p{
+        font-size: 15px;
+    }
+}

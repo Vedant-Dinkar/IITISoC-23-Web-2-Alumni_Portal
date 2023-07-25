@@ -151,6 +151,7 @@ nav .fa{
 }
 .smallbox42 h4{
     margin:15px 0px ;
+    margin-bottom: 5px;
     color: white;
     font-size: 30px;
 }
@@ -168,4 +169,37 @@ nav .fa{
 }
 #jobsbox43{
     width: 65%;
+}
+
+/* ------------------iphoneversion------------------------------------------------------------------------------- */
+@media(max-width:425px){
+    .header{
+        min-height: 58vh;
+    }
+    .navitems{
+        height: 58vh;
+    
+    }
+    .jh{
+         left:38%;
+         top:43%;
+         
+    }
+    .sbox42{
+        flex-direction:column ;
+    }
+    #jobsbox42{
+        width: 100%;
+        margin-bottom:-10px ;
+    }
+    #jobsbox43{
+        width: 100%;
+    }
+    .smallbox42 h4{
+        text-align: center;
+        display: inline-block;
+        margin: 20px auto;
+        font-size: 25px;
+    }
+
 }
