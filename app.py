@@ -18,7 +18,8 @@ from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
-client = MongoClient("mongodb+srv://MrAlumni:iitisoc123@alumniportal.g0c22w7.mongodb.net/")
+client = MongoClient(
+    "mongodb+srv://MrAlumni:iitisoc123@alumniportal.g0c22w7.mongodb.net/")
 
 # Select the "Alumni" database
 dab = client["Alumni"]
@@ -166,7 +167,7 @@ def protected_area():
     if existing_profile:
         return redirect(url_for('profile', **existing_profile))
 
-    if session['email'].split('@')[1] == 'alum.iiti.ac.in' or session['email'] in ('cse220001078@iiti.ac.in', 'mralumniportal@gmail.com','cse220001057@iiti.ac.in'):
+    if session['email'].split('@')[1] == 'alum.iiti.ac.in' or session['email'] in ('cse220001078@iiti.ac.in', 'mralumniportal@gmail.com', 'cse220001057@iiti.ac.in'):
         return render_template('linkedinurl.html')
     else:
         session.clear()
@@ -385,21 +386,33 @@ def get_profile():
             "profile_picture_url": session.get("profile_picture_url", "")
         }
 
-        try:
-            data_collection.insert_one(extracted_info)
-            return redirect(url_for('profile', **extracted_info))
-        except DuplicateKeyError:
-            return redirect('/protected_area')
+    # Check for duplicate profile in MongoDB collection
+    existing_profile = data_collection.find_one({"email": session['email']})
 
+    if existing_profile:
+        return redirect(url_for('profile', **existing_profile))
+
+    # Store the profile information in MongoDB if not a duplicate
+    try:
+        data_collection.insert_one(extracted_info)
         return redirect(url_for('profile', **extracted_info))
+    except DuplicateKeyError:
+        return redirect('/protected_area')
 
 # ---------------------new excel code-----------------------------------------------------------------------
+
+
 def load_profiles_from_excel(excel_file):
     # Load the existing profiles from the Excel file into a DataFrame
     if os.path.exists(excel_file):
         df = pd.read_excel(excel_file, engine="openpyxl")
     else:
         df = pd.DataFrame()
+
+    # Drop duplicate profiles based on specific columns (location_name, first_name, last_name, and headline)
+    df = df.drop_duplicates(
+        subset=["location_name", "first_name", "last_name", "headline"])
+
     return df
 
 
@@ -432,19 +445,19 @@ def profile():
         "email": request.args.get('email')
     }
 
-     # Store the profile information in MongoDB
-    if not profile_exists(data_collection, extracted_info):
-        # data_collection.insert_one(extracted_info)
+    # Store the profile information in MongoDB
+    # if not profile_exists(data_collection, extracted_info):
+    # data_collection.insert_one(extracted_info)
 
-        # Save the profile information in an Excel file
-        excel_file = "profile_info.xlsx"
-        df = load_profiles_from_excel(excel_file)
+    # Save the profile information in an Excel file
+    excel_file = "profile_info.xlsx"
+    df = load_profiles_from_excel(excel_file)
 
-        # Append the new profile information to the DataFrame
-        df = pd.concat([df, pd.DataFrame([extracted_info])], ignore_index=True)
+    # Append the new profile information to the DataFrame
+    df = pd.concat([df, pd.DataFrame([extracted_info])], ignore_index=True)
 
-        # Save the DataFrame to the Excel file
-        df.to_excel(excel_file, index=False, engine="openpyxl")
+    # Save the DataFrame to the Excel file
+    df.to_excel(excel_file, index=False, engine="openpyxl")
 
     return render_template('profile.html', extracted_info=extracted_info)
 
@@ -458,6 +471,22 @@ def profiles():
     return render_template('profiles.html', all_profiles=all_profiles)
 
 
+@app.route('/searchprofile', methods=['GET', 'POST'])
+@login_required_routes(login_required_routes_list)
+def searchprofile():
+    if request.method == 'POST':
+        email = request.form.get('email')
+
+        # Retrieve the profile from the database based on the given email
+        profile = data_collection.find_one({"email": email})
+
+        if profile:
+            return render_template('individualprofile.html', extracted_info=profile)
+        else:
+            error_message = f"No profile found for the email: {email}"
+            return render_template('searchprofile.html', error=error_message)
+
+    return render_template('searchprofile.html')
 
 
 if __name__ == "__main__":
