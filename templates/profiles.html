@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Profiles</title>
+</head>
+<body>
+    <h1>All Profiles</h1>
+    <ul>
+        {% for profile in all_profiles %}
+            <li>
+                <h3>Name: {{ profile.first_name }} {{ profile.last_name }}</h3>
+                <p>Location: {{ profile.location_name }}</p>
+                <p>Headline: {{ profile.headline }}</p>
+                <p>Companies: {{ ', '.join(profile.companies) }}</p>
+                <p>Headlines: {{ ', '.join(profile.headlines) }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -263,5 +263,13 @@ def profile():
 
     return render_template('profile.html', extracted_info=extracted_info)
 
+@app.route('/profiles', methods=['GET'])
+def profiles():
+    # Retrieve all profiles from the MongoDB collection
+    all_profiles = list(profiles_collection.find())
+
+    return render_template('profiles.html', all_profiles=all_profiles)
+
+
 if __name__ == "__main__":
     socketio.run(app,port=5000, debug=True)
