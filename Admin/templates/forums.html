@@ -4,4 +4,28 @@
 
 {% block content %}
 <h2>hey this is Forums</h2>
+<div class="addeventsbtn">
+    
+    <a href="http://127.0.0.1:5000/forumsext"><button class="button-30" role="button">Add Event</button></a>
+  </div>
+
+  {% for forum in forumss|reverse %}
+<div class="an_event">
+  <div class="event_details">
+
+    <h4>{{forum['alumni_name']}}</h4>
+    <p><i>{{forum['batch']}}</i></p>
+    <p>{{forum['comment']}}</p>
+  </div>
+  <div class="btns">	            
+    <form method="POST" action="{{ url_for('delete_forum', id=forum['_id']) }}" >
+    <input type="submit" value="Delete"
+           onclick="return confirm('Are you sure you want to delete this entry?')">
+</form>
+    
+    <!-- <button>Delete</button> -->
+  </div>
+</div>
+<hr>
+  {% endfor %}
 {% endblock %}

@@ -25,6 +25,7 @@ mongo=PyMongo(app)
 db = client.Alumni_Admin
 EVENTS = db.Events
 MAILS=db.Mails
+FORUMS=db.Forums
 fs=gridfs.GridFS(db)
 
 
@@ -82,13 +83,14 @@ def gallerydisplay():
     try:
         # Retrieve all image files from GridFS
         files = fs.find()
-        image_names = []
-        for file in files:
-            image_names.append(file.filename)
+        image_names = [file.filename for file in files]
+
+        # Sort the image names alphabetically
+        image_names = sorted(image_names)
+
         return render_template('gallery.html', image_names=image_names)
     except errors.ServerSelectionTimeoutError:
         return 'Failed to connect to MongoDB server'
-    
 @app.route('/display/<filename>')
 def display_image(filename):
     try:
@@ -103,7 +105,19 @@ def display_image(filename):
     except errors.ServerSelectionTimeoutError:
         return 'Failed to connect to MongoDB server'
 
-
+@app.route('/delete/<filename>', methods=['POST'])
+def delete_image(filename):
+    try:
+        # Find the image by filename
+        file = fs.find_one({'filename': filename})
+        if file is None:
+            return 'Image not found'
+        else:
+            # Delete the image from GridFS
+            fs.delete(file._id)
+            return redirect(url_for('gallerydisplay'))
+    except errors.ServerSelectionTimeoutError:
+        return 'Failed to connect to MongoDB server'
 
 
 
@@ -153,9 +167,30 @@ def mailsext():
 
 
 # --------------------------------FORUMS------------------------
+
+
+@app.route('/forumsext', methods=('GET', 'POST'))
+def forumsext():
+    if request.method=='POST':
+        alumni_name = request.form['alumni_name']
+        batch = request.form['batch']
+        comment = request.form['comment']
+        FORUMS.insert_one({'alumni_name': alumni_name, 'batch': batch, 'comment':comment})
+        return redirect(url_for('forums'))
+    return render_template('forumsext.html')
+
+@app.post('/forums/<id>/delete/')
+def delete_forum(id):
+    # eventtobedeleted={'_id':ObjectId(id)}
+    FORUMS.delete_one({"_id":ObjectId(id)})
+    # events.delete_one(eventtobedeleted)
+    return redirect(url_for('forums'))
+
+
 @app.route('/forums')
 def forums():
-    return render_template('forums.html')
+    all_forumss = FORUMS.find()
+    return render_template('forums.html', forumss=all_forumss)
 
 
 
