@@ -19,10 +19,12 @@ from pymongo import errors
 
 app = Flask(__name__)
 
-client = MongoClient('localhost', 27017)
-app.config['MONGO_URI']='mongodb://localhost:27017'
-mongo=PyMongo(app)
-db = client.Alumni_Admin
+# client = MongoClient('localhost', 27017)
+# app.config['MONGO_URI']='mongodb://localhost:27017'
+# mongo=PyMongo(app)
+client = MongoClient("mongodb+srv://MrAlumni:iitisoc123@alumniportal.g0c22w7.mongodb.net/admin")
+
+db = client["Alumni"]
 EVENTS = db.Events
 MAILS=db.Mails
 FORUMS=db.Forums
