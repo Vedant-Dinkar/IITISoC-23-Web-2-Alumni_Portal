@@ -72,7 +72,7 @@
                         </div>
                         <div class="infopersonal box">
                             <h3>{{ extracted_info.first_name }} {{ extracted_info.last_name }} </h3>
-                            <p>Headline: {{ extracted_info.headline }}</p>
+                            <p>Education: {{ extracted_info.headline }}</p>
                             <!-- <p>Batch: 2017</p> -->
                             <p>Company: {% for company in extracted_info.companies %}{{ company }}{% if not loop.last
                                 %}, {% endif %}{% endfor %}</p>
