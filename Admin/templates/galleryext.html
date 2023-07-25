@@ -1,0 +1,13 @@
+{% extends "layout.html" %} {% block title %}Gallery Extension{% endblock %} {%
+block content %} 
+
+<form method="post" enctype="multipart/form-data">
+  <label for="event_gallery_name">Event Name</label>
+  <input type="text" name="event_gallery_name" />
+  <br>
+  <label for="gallery_image">Upload Images</label>
+  <input type="file" name="gallery_image" multiple />
+  <br>
+  <input type="submit" />
+</form>
+{% endblock %}
