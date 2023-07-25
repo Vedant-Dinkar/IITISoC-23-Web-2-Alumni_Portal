@@ -28,8 +28,7 @@ dab = client["Alumni"]
 data_collection = dab["Data"]
 messages_collection = dab["messages"]
 
-
-MAILS=dab.Mails
+EVENTS = dab.Events
 FORUMS=dab.Forums
 
 app = Flask("Google Login App")
@@ -146,7 +145,8 @@ def profile():
 @app.route("/")
 def home():
     all_forumss = FORUMS.find()
-    return render_template('compiled.html',forumss=all_forumss)
+    all_events = EVENTS.find()
+    return render_template('compiled.html',forumss=all_forumss,events=all_events)
 
 
 @app.route("/home")
@@ -162,7 +162,8 @@ def jobs():
 
 @app.route('/events')
 def events():
-    return render_template('events.html')
+    all_events = EVENTS.find()
+    return render_template('events.html',events=all_events)
 
 
 @app.route("/protected_area")
