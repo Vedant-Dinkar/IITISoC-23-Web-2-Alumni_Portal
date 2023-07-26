@@ -601,15 +601,17 @@ img {
     /* width: 45%; */
     /* max-width: 55%; */
     /* min-width: 55%; */
-    box-shadow: 3px 3px 10px black, -3px -3px 10px black;
+    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.75);
     border-radius: 15px;
+    transform: translateY(-3px);
+    z-index: 0;
     height: fit-content;
 
 }
 
 .name div img {
     height: 120px;
-    width: 140px;
+    width: 120px;
     border-radius: 50%;
     margin: 1px auto;
 }
@@ -639,8 +641,12 @@ img {
     padding: 15px 0px;
     background-color: white;
     border-radius: 15px;
-    box-shadow: 3px 3px 10px black, -3px -3px 10px black;
+    /*box-shadow: 1px 1px 5px black, -1px -1px 5px black;*/
+    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.75);
     background-color: white;
+    margin-top: 30px;
+    height: 380px;
+    z-index: 0;
 }
 
 .aboutme h3 {
@@ -668,10 +674,12 @@ img {
 
 .accessibility {
     width: 30%;
-    border: 2px solid black;
     background-color: white;
     border-radius: 15px;
-    box-shadow: 3px 3px 10px black, -3px -3px 10px black;
+    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.75);
+    transform: translateX(-5px);
+    
+    z-index: 0;
 }
 
 .accessibility h3 {
@@ -727,13 +735,25 @@ img {
     padding-left: 5px;
 }
 
+.btn35{
+    height: 40px;
+    width: 200px;
+}
+
 .connectbtn {
     padding: 5px 15px;
+    border: none;
     display: block;
-    margin: 25px auto;
+    margin: 0px auto;
     background-color: #003153;
     color: white;
+    margin-top: 10px;
     border-radius: 15px;
+    z-index: 0;
+}
+
+.connectbtn:hover{
+    background-color: #00477a;
 }
 
 .connectbtn a {
@@ -756,7 +776,7 @@ img {
     flex-direction: column;
     border-radius: 15px;
     width: 30%;
-    box-shadow: 3px 3px 10px black, -3px -3px 10px black;
+    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.75);
 }
 
 .events img {
@@ -834,6 +854,7 @@ body {
         /* border: 2px solid red; */
     }
     .accessibility{
+        border: none !important;
         display: block;
         width: 80%;
         margin:30px auto;
@@ -845,4 +866,87 @@ body {
         margin: 45px auto;
         height: fit-content;
     } 
+}
+
+.accessibility button{
+    border: none;
+    transition: 0.2s;
+    background: #003153;
+}
+
+.accessibility button:hover{
+    background: #00477a;
+    border: none;
+    transition: 0.2s;
+}
+
+.btn35{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.desc{
+    text-align: center;
+}
+
+.desc label{
+    z-index: 5;
+    position: absolute;
+    top: 50%;
+    left: 4%;
+    transform: translate(-3%, -50%);
+    color: #adadad;
+    font-size: 32px;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+form .txt_field {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.txt_field input {
+    width: 80%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.txt_field label {
+    z-index: 5;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.txt_field span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: 0s;
+}
+
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label {
+    color: #adadad;
+    z-index: -5;
+}
+
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before {
+    width: 80%;
 }
