@@ -1,6 +1,7 @@
 import os
 import pathlib
 import string
+import pandas as pd
 
 from flask import Flask, request, jsonify, render_template, redirect, session
 from flask import Flask, render_template, request, redirect, url_for, session,g
@@ -17,13 +18,19 @@ from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
-client = MongoClient("mongodb+srv://MrAlumni:iitisoc123@alumniportal.g0c22w7.mongodb.net/")
+client = MongoClient(
+    "mongodb+srv://MrAlumni:iitisoc123@alumniportal.g0c22w7.mongodb.net/")
 
 # Select the "Alumni" database
 dab = client["Alumni"]
 
 # Select the "Data" collection
 data_collection = dab["Data"]
+messages_collection = dab["messages"]
+
+
+MAILS=dab.Mails
+FORUMS=dab.Forums
 
 app = Flask("Google Login App")
 app.secret_key = "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"
@@ -31,9 +38,9 @@ app.secret_key = "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"
 socketio = SocketIO(app)
 app.config["SECRET_KEY"] = "80085"
 #app.config["SECRET_KEY"] = "hjhjsdahhds"
-client = MongoClient("mongodb://localhost:27017/")
-db = client["chat_app"]
-messages_collection = db["messages"]
+# client = MongoClient("mongodb://localhost:27017/")
+# db = client["chat_app"]
+# messages_collection = db["messages"]
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
@@ -182,6 +189,16 @@ def generate_unique_code(length):
     
     return code
 
+def get_global_chat_room():
+    global_room = "GLOBAL"
+    if global_room not in rooms:
+        rooms[global_room] = {"members": 0, "messages": []}
+    return global_room
+
+
+def get_rooms_list():
+    return list(rooms.keys())
+
 @app.route("/chat", methods=["POST", "GET"])
 @login_required_routes(login_required_routes_list)
 def chat():
@@ -201,6 +218,8 @@ def chat():
         if create != False:
             room = generate_unique_code(4)
             rooms[room] = {"members": 0, "messages": []}
+        elif code.upper() == "GLOBAL":
+            room = get_global_chat_room()
         elif code not in rooms:
             return render_template("chat.html", error="Room does not exist.", code=code, name=name)
         
@@ -240,8 +259,11 @@ def connect(auth):
     if not room or not name:
         return
     if room not in rooms:
-        leave_room(room)
-        return
+        if room.upper() == "GLOBAL":
+            room = get_global_chat_room()
+        else:
+            leave_room(room)
+            return
     
     join_room(room)
     send({"name": name, "message": "has entered the room"}, to=room)
@@ -261,7 +283,6 @@ def disconnect():
     
     send({"name": name, "message": "has left the room"}, to=room)
     print(f"{name} has left the room {room}")
-
 
 # linkedinapi------------------------------------------------------------------------------
 
@@ -348,14 +369,46 @@ def get_profile():
             "name": session['name'],
             "profile_picture_url": session.get("profile_picture_url", "")
         }
+        
+ # Check for duplicate profile in MongoDB collection
+    existing_profile = data_collection.find_one({"email": session['email']})
 
-        try:
-            data_collection.insert_one(extracted_info)
-            return redirect(url_for('profile', **extracted_info))
-        except DuplicateKeyError:
-            return redirect('/protected_area')
+    if existing_profile:
+        return redirect(url_for('profile', **existing_profile))
 
+    # Store the profile information in MongoDB if not a duplicate
+    try:
+        data_collection.insert_one(extracted_info)
         return redirect(url_for('profile', **extracted_info))
+    except DuplicateKeyError:
+        return redirect('/protected_area')
+# ---------------------new excel code-----------------------------------------------------------------------
+
+
+def load_profiles_from_excel(excel_file):
+    # Load the existing profiles from the Excel file into a DataFrame
+    if os.path.exists(excel_file):
+        df = pd.read_excel(excel_file, engine="openpyxl")
+    else:
+        df = pd.DataFrame()
+
+    # Drop duplicate profiles based on specific columns (location_name, first_name, last_name, and headline)
+    df = df.drop_duplicates(
+        subset=["location_name", "first_name", "last_name", "headline"])
+
+    return df
+
+
+def profile_exists(profiles_collection, extracted_info):
+    # Check if the profile already exists in the MongoDB collection based on specific columns
+    existing_profile = profiles_collection.find_one({
+        "location_name": extracted_info["location_name"],
+        "first_name": extracted_info["first_name"],
+        "last_name": extracted_info["last_name"],
+        "headline": extracted_info["headline"]
+    })
+
+    return existing_profile is not None
 
 @app.route('/profile', methods=['GET'])
 @login_required_routes(login_required_routes_list)
@@ -373,8 +426,44 @@ def profile():
         "branch": request.args.get('branch'),
         "email": request.args.get('email')
     }
+    # Save the profile information in an Excel file
+    excel_file = "profile_info.xlsx"
+    df = load_profiles_from_excel(excel_file)
+
+    # Append the new profile information to the DataFrame
+    df = pd.concat([df, pd.DataFrame([extracted_info])], ignore_index=True)
+
+    # Save the DataFrame to the Excel file
+    df.to_excel(excel_file, index=False, engine="openpyxl")
+
     return render_template('profile.html', extracted_info=extracted_info)
+
+@app.route('/profiles', methods=['GET'])
+@login_is_required
+def profiles():
+    # Retrieve all profiles from the MongoDB collection
+    all_profiles = list(data_collection.find())
+
+    return render_template('profiles.html', all_profiles=all_profiles)
+
+
+@app.route('/searchprofile', methods=['GET', 'POST'])
+@login_required_routes(login_required_routes_list)
+def searchprofile():
+    if request.method == 'POST':
+        email = request.form.get('email')
+
+        # Retrieve the profile from the database based on the given email
+        profile = data_collection.find_one({"email": email})
+
+        if profile:
+            return render_template('individualprofile.html', extracted_info=profile)
+        else:
+            error_message = f"No profile found for the email: {email}"
+            return render_template('searchprofile.html', error=error_message)
+
+    return render_template('searchprofile.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
-    socketio.run(app,port=2000, debug=True)
+    socketio.run(app,port=5000, debug=True)
