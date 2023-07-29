@@ -4,7 +4,7 @@ import string
 import pandas as pd
 
 from flask import Flask, request, jsonify, render_template, redirect, session
-from flask import Flask, render_template, request, redirect, url_for, session, g
+from flask import Flask, render_template, request, redirect, url_for, session,g
 from flask_socketio import join_room, leave_room, send, SocketIO
 import random
 from string import ascii_uppercase
@@ -36,22 +36,19 @@ app.secret_key = "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"
 
 socketio = SocketIO(app)
 app.config["SECRET_KEY"] = "80085"
-# app.config["SECRET_KEY"] = "hjhjsdahhds"
+#app.config["SECRET_KEY"] = "hjhjsdahhds"
 # client = MongoClient("mongodb://localhost:27017/")
 # db = client["chat_app"]
 # messages_collection = db["messages"]
-# profiles_collection = db["profiles"]  # Create a new collection for storing LinkedIn profiles
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 GOOGLE_CLIENT_ID = "886588755390-1spe51df9k9uiimti149uf716fdujake.apps.googleusercontent.com"
-client_secrets_file = os.path.join(
-    pathlib.Path(__file__).parent, "client_secret.json")
+client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
-    scopes=["https://www.googleapis.com/auth/userinfo.profile",
-            "https://www.googleapis.com/auth/userinfo.email", "openid"],
+    scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
     redirect_uri="http://localhost:5000/callback"
 )
 
@@ -64,7 +61,6 @@ def login_is_required(function):
             return function()
 
     return wrapper
-
 
 def login_required_routes(route_list):
     def decorator(function):
@@ -81,10 +77,9 @@ def login_required_routes(route_list):
 
     return decorator
 
-
 # List of routes that require login (add all the routes except "home", "login", and "home2")
-login_required_routes_list = ["/protected_area", "/room",
-                              "/get_profile", "/profile", "/chat", "/linkedinurl"]
+login_required_routes_list = ["/protected_area", "/room", "/get_profile", "/profile", "/chat", "/linkedinurl"]
+
 
 
 @app.route("/login")
@@ -104,8 +99,7 @@ def callback():
     credentials = flow.credentials
     request_session = requests.session()
     cached_session = cachecontrol.CacheControl(request_session)
-    token_request = google.auth.transport.requests.Request(
-        session=cached_session)
+    token_request = google.auth.transport.requests.Request(session=cached_session)
 
     # Example code for increasing clock skew tolerance to 5 minutes (300 seconds)
     id_info = id_token.verify_oauth2_token(
@@ -115,6 +109,7 @@ def callback():
         clock_skew_in_seconds=10  # 5 minutes tolerance
     )
 
+
     session["google_id"] = id_info.get("sub")
     session["name"] = id_info.get("name")
     session["email"] = id_info.get("email")
@@ -122,7 +117,7 @@ def callback():
     existing_profile = data_collection.find_one({"email": session['email']})
     if existing_profile:
         return redirect(url_for('profile', **existing_profile))
-
+    
     return redirect("/protected_area")
 
 
@@ -136,11 +131,9 @@ def logout():
 def log():
     return render_template('login.html')
 
-
 '''@app.route("/profile")
 def profile():
     return render_template('profile.html')'''
-
 
 @app.route("/")
 def home():
@@ -153,12 +146,10 @@ def home():
 def home2():
     return render_template('compiled.html')
 
-
 @app.route('/jobs')
 @login_required_routes(login_required_routes_list)
 def jobs():
     return render_template('jobs.html')
-
 
 @app.route('/events')
 def events():
@@ -172,15 +163,14 @@ def protected_area():
     existing_profile = data_collection.find_one({"email": session['email']})
     if existing_profile:
         return redirect(url_for('profile', **existing_profile))
-
-    if session['email'].split('@')[1] == 'alum.iiti.ac.in' or session['email'] in ('cse220001078@iiti.ac.in', 'mralumniportal@gmail.com', 'cse220001057@iiti.ac.in'):
+    
+    if session['email'].split('@')[1]=='alum.iiti.ac.in' or session['email'] in ('cse220001078@iiti.ac.in', 'mralumniportal@gmail.com'):   
         return render_template('linkedinurl.html')
     else:
         session.clear()
 
     # Revoke the access token
-        # Assuming you are storing the access token in a cookie
-        access_token = request.cookies.get("access_token")
+        access_token = request.cookies.get("access_token")  # Assuming you are storing the access token in a cookie
         if access_token:
             revoke_token(access_token)
         return "Unauthorised Login. Only an official institute Alumni ID can login."
@@ -188,22 +178,19 @@ def protected_area():
         return f"Hello {session['name']}! Your email is {session['email']} <br/> <a href='/logout'><button>Logout</button></a>"
     else:
         return "User information not found. Please log in first."'''
-
-
+    
 rooms = {}
-
 
 def generate_unique_code(length):
     while True:
         code = ""
         for _ in range(length):
             code += random.choice(ascii_uppercase)
-
+        
         if code not in rooms:
             break
-
+    
     return code
-
 
 def get_global_chat_room():
     global_room = "GLOBAL"
@@ -215,12 +202,11 @@ def get_global_chat_room():
 def get_rooms_list():
     return list(rooms.keys())
 
-
-@app.route("/chat.html", methods=["POST", "GET"])
+@app.route("/chat", methods=["POST", "GET"])
+@login_required_routes(login_required_routes_list)
 def chat():
-    session.clear()
     if request.method == "POST":
-        name = request.form.get("name")
+        name = session['name']
         code = request.form.get("code")
         join = request.form.get("join", False)
         create = request.form.get("create", False)
@@ -230,7 +216,7 @@ def chat():
 
         if join != False and not code:
             return render_template("chat.html", error="Please enter a room code.", code=code, name=name)
-
+        
         room = code
         if create != False:
             room = generate_unique_code(4)
@@ -239,13 +225,12 @@ def chat():
             room = get_global_chat_room()
         elif code not in rooms:
             return render_template("chat.html", error="Room does not exist.", code=code, name=name)
-
+        
         session["room"] = room
         session["name"] = name
         return redirect(url_for("room"))
 
-    return render_template("chat.html", rooms=get_rooms_list())
-
+    return render_template("chat.html")
 
 @app.route("/room")
 def room():
@@ -253,24 +238,22 @@ def room():
     if room is None or session.get("name") is None or room not in rooms:
         return redirect(url_for("chat"))
 
-    return render_template("room.html", code=room, messages=rooms[room]["messages"], rooms=get_rooms_list())
-
+    return render_template("room.html", code=room, messages=rooms[room]["messages"])
 
 @socketio.on("message")
 def message(data):
     room = session.get("room")
     if room not in rooms:
-        return
-
+        return 
+    
     content = {
         "name": session.get("name"),
         "message": data["data"]
     }
     send(content, to=room)
     rooms[room]["messages"].append(content)
-    messages_collection.insert_one(content)
+    messages_collection.insert_one(content)  # Store the message in MongoDB
     print(f"{session.get('name')} said: {data['data']}")
-
 
 @socketio.on("connect")
 def connect(auth):
@@ -284,12 +267,11 @@ def connect(auth):
         else:
             leave_room(room)
             return
-
+    
     join_room(room)
     send({"name": name, "message": "has entered the room"}, to=room)
     rooms[room]["members"] += 1
     print(f"{name} joined room {room}")
-
 
 @socketio.on("disconnect")
 def disconnect():
@@ -301,10 +283,9 @@ def disconnect():
         rooms[room]["members"] -= 1
         if rooms[room]["members"] <= 0:
             del rooms[room]
-
+    
     send({"name": name, "message": "has left the room"}, to=room)
     print(f"{name} has left the room {room}")
-
 
 # linkedinapi------------------------------------------------------------------------------
 
@@ -316,32 +297,32 @@ def linkedinurl():
         return redirect(url_for('profile', **existing_profile))
     return render_template('linkedinurl.html')
 
-
 @app.route('/get_profile', methods=['POST'])
 @login_required_routes(login_required_routes_list)
 def get_profile():
     # Authenticate using any LinkedIn account credentials
     api = Linkedin('mralumniportal@gmail.com', 'iitisoc123')
 
-    if session['email'][0:2] == 'ee':
-        branch = 'Electrical'
-
-    if session['email'][0:4] != 'mems' and session['email'][0:2] == 'me':
-        branch = 'Metallurgical'
-
-    if session['email'][0:4] == 'mems':
-        branch = 'Mechanical'
-
-    if session['email'][0:2] == 'ce':
-        branch = 'Civil'
-
+    if session['email'][0:2]=='ee':
+        branch='Electrical'
+            
+    if session['email'][0:4]!='mems' and session['email'][0:2]=='me':
+        branch='Metallurgical'
+        
+    if session['email'][0:4]=='mems':
+        branch='Mechanical'
+        
+    if session['email'][0:2]=='ce':
+        branch='Civil'
+        
     else:
-        branch = 'Computer Science'
+        branch='Computer Science'
+        
 
     # Retrieve the profile URL from the request
     profile_url = request.form['profile_url']
 
-    urli = profile_url
+    urli=profile_url
 
     # Parse the profile URL to extract the profile identifier
     profile_id = profile_url.split('/')[-2]
@@ -361,7 +342,7 @@ def get_profile():
     last_name = profile.get('lastName')
     headline = profile.get('headline')
 
-    if headline == None:
+    if headline==None:
         return redirect('/protected-area')
     else:
         experiences = profile.get('experience', [])
@@ -391,8 +372,8 @@ def get_profile():
             "name": session['name'],
             "profile_picture_url": session.get("profile_picture_url", "")
         }
-
-    # Check for duplicate profile in MongoDB collection
+        
+ # Check for duplicate profile in MongoDB collection
     existing_profile = data_collection.find_one({"email": session['email']})
 
     if existing_profile:
@@ -404,7 +385,6 @@ def get_profile():
         return redirect(url_for('profile', **extracted_info))
     except DuplicateKeyError:
         return redirect('/protected_area')
-
 # ---------------------new excel code-----------------------------------------------------------------------
 
 
@@ -433,15 +413,14 @@ def profile_exists(profiles_collection, extracted_info):
 
     return existing_profile is not None
 
-
 @app.route('/profile', methods=['GET'])
 @login_required_routes(login_required_routes_list)
 def profile():
     extracted_info = {
         "location_name": request.args.get('location_name'),
-        # "first_name": request.args.get('first_name'),
+        #"first_name": request.args.get('first_name'),
         "first_name": session['name'],
-        # "last_name": request.args.get('last_name'),
+        #"last_name": request.args.get('last_name'),
         "last_name": '',
         "headline": request.args.get('headline'),
         "companies": request.args.getlist('companies'),
@@ -450,11 +429,6 @@ def profile():
         "branch": request.args.get('branch'),
         "email": request.args.get('email')
     }
-
-    # Store the profile information in MongoDB
-    # if not profile_exists(data_collection, extracted_info):
-    # data_collection.insert_one(extracted_info)
-
     # Save the profile information in an Excel file
     excel_file = "profile_info.xlsx"
     df = load_profiles_from_excel(excel_file)
@@ -466,7 +440,6 @@ def profile():
     df.to_excel(excel_file, index=False, engine="openpyxl")
 
     return render_template('profile.html', extracted_info=extracted_info)
-
 
 @app.route('/profiles', methods=['GET'])
 @login_is_required
@@ -494,7 +467,6 @@ def searchprofile():
 
     return render_template('searchprofile.html')
 
-
 if __name__ == "__main__":
     app.run(debug=True)
-    socketio.run(app, port=5000, debug=True)
+    socketio.run(app,port=5000, debug=True)
