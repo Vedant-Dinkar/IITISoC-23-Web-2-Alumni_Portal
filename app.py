@@ -16,6 +16,8 @@ import requests
 from flask import Flask, session, abort, redirect, request
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
+import gridfs
+from pymongo import errors
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
 client = MongoClient(
@@ -30,6 +32,8 @@ messages_collection = dab["messages"]
 
 EVENTS = dab.Events
 FORUMS=dab.Forums
+fs=gridfs.GridFS(dab)
+
 
 app = Flask("Google Login App")
 app.secret_key = "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"
@@ -144,7 +148,9 @@ def home():
 
 @app.route("/home")
 def home2():
-    return render_template('compiled.html')
+    all_forumss = FORUMS.find()
+    all_events = EVENTS.find()
+    return render_template('compiled.html',forumss=all_forumss,events=all_events)
 
 @app.route('/jobs')
 @login_required_routes(login_required_routes_list)
@@ -156,6 +162,32 @@ def events():
     all_events = EVENTS.find()
     return render_template('events.html',events=all_events)
 
+@app.route('/gallery')
+def gallerydisplay():
+    try:
+        # Retrieve all image files from GridFS
+        files = fs.find()
+        image_names = [file.filename for file in files]
+
+        # Sort the image names alphabetically
+        image_names = sorted(image_names)
+
+        return render_template('gallery.html', image_names=image_names)
+    except errors.ServerSelectionTimeoutError:
+        return 'Failed to connect to MongoDB server'
+@app.route('/display/<filename>')
+def display_image(filename):
+    try:
+        # Retrieve the image from GridFS by filename
+        file = fs.find_one({'filename': filename})
+        if file is None:
+            return 'Image not found'
+        else:
+            # Set the content type and return the image data
+            response = app.response_class(file.read(), mimetype='image/jpeg')
+            return response
+    except errors.ServerSelectionTimeoutError:
+        return 'Failed to connect to MongoDB server'
 
 @app.route("/protected_area")
 @login_required_routes(login_required_routes_list)
