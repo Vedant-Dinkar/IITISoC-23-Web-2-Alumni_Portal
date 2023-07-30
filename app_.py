@@ -2,8 +2,7 @@ import os
 import pathlib
 import string
 import pandas as pd
-from flask import Flask, request, jsonify, render_template, redirect, session
-from flask import Flask, render_template, request, redirect, url_for, session,g
+from flask import Flask, request, jsonify, render_template, redirect, session, send_file, abort
 from flask_socketio import join_room, leave_room, send, SocketIO
 import random
 from string import ascii_uppercase
@@ -12,15 +11,12 @@ from pymongo.errors import DuplicateKeyError
 from linkedin_api import Linkedin
 from werkzeug.security import generate_password_hash, check_password_hash
 import requests
-from flask import Flask, session, abort, redirect, request
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
 from gridfs import GridFS
-from flask import send_file
 import io
-from flask import send_file, abort
 
 client = MongoClient("mongodb+srv://MrAlumni:iitisoc123@alumniportal.g0c22w7.mongodb.net/")
 
@@ -32,14 +28,13 @@ fs = GridFS(dab, collection="images")
 data_collection = dab["Data"]
 messages_collection = dab["messages"]
 
-
-MAILS=dab.Mails
-FORUMS=dab.Forums
+MAILS = dab.Mails
+FORUMS = dab.Forums
 
 app = Flask("Google Login App")
 app.secret_key = "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"
-
 socketio = SocketIO(app)
+
 app.config["SECRET_KEY"] = "80085"
 #app.config["SECRET_KEY"] = "hjhjsdahhds"
 # client = MongoClient("mongodb://localhost:27017/")
@@ -351,13 +346,13 @@ def get_profile():
     last_name = profile.get('lastName')
     headline = profile.get('headline')
 
-    #image_file = request.files['picture']
+    image_file = request.files['picture']
 
     # Save the image to MongoDB using GridFS
-    #image_id = fs.put(image_file.read(), filename=image_file.filename)
+    image_id = fs.put(image_file.read(), filename=image_file.filename)
 
     # Add the image_id to the profile information dictionary
-    #extracted_info["picture"] = str(image_id)
+    extracted_info["picture"] = str(image_id)
 
     '''image_file = request.files['picture']
 
@@ -385,7 +380,7 @@ def get_profile():
 
         # Create a dictionary with the extracted information
         extracted_info = {
-            #"image_id": image_id,
+            "image_id": image_id,
             "birthday": birthday,
             "about_me": about_me,
             "location_name": location_name,
@@ -451,7 +446,7 @@ def profile():
     extracted_info = {
         #"image_id": request.args.get('image_id'),
         #"picture": request.args.get('picture'),
-        #'image_file': request.files['picture'],
+        'image_file': request.files['picture'],
         "birthday": request.args.get('birthday'),
         "about_me": request.args.get('about_me'),
         "location_name": request.args.get('location_name'),
@@ -504,33 +499,13 @@ def searchprofile():
 
     return render_template('searchprofile.html')
 
-'''@app.route('/searchprofile', methods=['GET', 'POST'])
-@login_required_routes(login_required_routes_list)
-def searchprofile():
-    if request.method == 'POST':
-        name = request.form.get('email')
-
-        #query.split(' ')
-
-        # Retrieve the profile from the database based on the given email
-        profile = data_collection.find({"name": name})
-
-        if profile:
-            return render_template('individualprofile.html', extracted_info=profile)
-        else:
-            error_message = f"No profile found for the email: {name}"
-            return render_template('searchprofile.html', error=error_message)
-
-    return render_template('searchprofile.html')'''
-
-'''@app.route('/profile/image/<image_id>', methods=['GET'])
+@app.route('/profile/image/<image_id>', methods=['GET'])
 def get_image(image_id):
     try:
         image_data = fs.get(image_id).read()
         return send_file(io.BytesIO(image_data), mimetype='image/png')
     except:
-        abort(404)'''
+        abort(404)
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    socketio.run(app,port=5000, debug=True)
+    socketio.run(app, port=5000, debug=True)

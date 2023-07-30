@@ -88,9 +88,7 @@
   justify-content: space-between;
 
 }
-.cards:hover{
-  transform: scale(1.1);
-}
+
 .comment {
   margin: 10px;
   color: #000;

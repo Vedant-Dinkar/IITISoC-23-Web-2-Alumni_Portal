@@ -8,7 +8,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: #e1e8ec !important;
+  background-image: url('../static/Group 46.png') !important;
   height: 100vh;
   overflow: hidden;
 }

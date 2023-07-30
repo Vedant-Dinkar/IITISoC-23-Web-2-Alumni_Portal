@@ -127,6 +127,7 @@ body{
                     <li><a href="./#gallerypic">GALLERY</a></li>
                     <li><a href="./#aboutus">ABOUT</a></li>
                     <li><a href="./#contactpls">CONTACT</a></li>
+                    <li style="margin-left: 200px;"><a href="./logout">LOG OUT</a></li>
                 </ul>   
             </div>
         </div>
@@ -163,13 +164,21 @@ body{
             <div class="profilepage">
                 <div class="ppam33 crater36">
                     <div class="name  ">
-                        <div class="imgbox box" id="box1">
+                        <!--<div class="imgbox box" id="box1">
                             {% if extracted_info.profile_picture_url %}
-                            <img src="{{ extracted_info.profile_picture_url }}" alt="">
+                            <img src="{{ url_for('get_image', image_id=extracted_info.profile_picture_url) }}" alt="" height="120px" width="120px">
                             {% else %}
                             <img src="../static/no-image-icon-15.png" alt="" height="120px" width="120px">
                             {% endif %}
+                        </div>-->
+                        <div class="imgbox box" id="box1">
+                            {% if extracted_info.picture %}
+                            <img src="{{ url_for('get_image', image_id=extracted_info.picture) }}" alt="" height="120px" width="120px">
+                            {% else %}
+                                <img src="../static/no-image-icon-15.png" alt="" height="120px" width="120px">
+                            {% endif %}
                         </div>
+                        
                         <div class="infopersonal box">
                             <h3>{{ extracted_info.first_name }} {{ extracted_info.last_name }} </h3>
                             <p>Work: {{ extracted_info.headline }}</p>
@@ -185,7 +194,7 @@ body{
                     <div class="aboutme box">
                         <h3>About Me</h3>
                         <div class="horizontalline1"></div>
-                        <p>{{ extracted_info.headlines }}</p>
+                        <p>{{ extracted_info.about_me }}</p>
                     </div>
                 </div>
 
@@ -199,14 +208,20 @@ body{
                   <button class="searchbtn34  btn35"><img src="../static/accessibility/jobs.png" alt="" class="aimg47"></button> -->
 
                     <button class="chatbtn34  btn35"><a href="./chat">Chat</a></button>
-                    <button class="searchbtn34  btn35"><a href="">Search</a></button>
-                    <button class="searchbtn34  btn35"><a href="./#events33">Events</a></button>
+                    <button class="searchbtn34  btn35"><a href="./searchprofile">Search</a></button>
+                    <button class="searchbtn34  btn35"><a href="./events">Events</a></button>
                     <button class="searchbtn34  btn35"><a href="./#gallerypic">Gallery</a></button>
                     <br>
                     <div class="horizontalline2" style="width: 50%;"></div>
                     <br>
                     <br>
                     <form method="post">
+                        <div class="desc txt_field">
+                            <input type="text" name="job_title"> <!-- Added input field for job description -->
+                            <span></span>
+                            <br>
+                            <label>Job Title</label>
+                        </div>
                         <div class="desc txt_field">
                             <input type="text" name="job_description"> <!-- Added input field for job description -->
                             <span></span>
@@ -224,10 +239,12 @@ body{
                         <div class="scroll-div">
                             <div class="scroll-object">
                                 <h3>Jobs</h3>
-                                <div class="horizontalline3"></div>
-                                <img src="../static/alumni/1.jpeg" alt="">
-                                <img src="../static/alumni/2.jpeg" alt="">
-                                <img src="../static/alumni/3.jpeg" alt="">
+                                  <a href="./jobs">
+                                    <div class="horizontalline3"></div>
+                                    <img src="../static/alumni/1.jpeg" alt="">
+                                    <img src="../static/alumni/2.jpeg" alt="">
+                                    <img src="../static/alumni/3.jpeg" alt="">
+                                  </a>
                             </div>
                         </div>
                     </div>
