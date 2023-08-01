@@ -20,6 +20,7 @@ import google.auth.transport.requests
 from gridfs import GridFS
 from flask import send_file
 import io
+from pymongo.errors import OperationFailure
 from flask import send_file, abort
 
 client = MongoClient("mongodb+srv://MrAlumni:iitisoc123@alumniportal.g0c22w7.mongodb.net/")
@@ -239,7 +240,12 @@ def room():
     if room is None or session.get("name") is None or room not in rooms:
         return redirect(url_for("chat"))
 
-    return render_template("room.html", code=room, messages=rooms[room]["messages"])
+    # Retrieve chat messages for the given room from MongoDB
+    chat_messages = messages_collection.find({"room": room})
+    messages = [msg for msg in chat_messages]
+
+    return render_template("room.html", code=room, messages=messages)
+
 
 @socketio.on("message")
 def message(data):
@@ -252,9 +258,17 @@ def message(data):
         "message": data["data"]
     }
     send(content, to=room)
-    rooms[room]["messages"].append(content)
-    messages_collection.insert_one(content)  # Store the message in MongoDB
-    print(f"{session.get('name')} said: {data['data']}")
+    rooms[room]["messages"].append(content) # Store the message in MongoDB
+
+    # Store the message in the "messages" collection
+    message_data = {
+        "name": session.get("name"),
+        "message": data["data"]
+    }
+    messages_collection.insert_one(message_data)
+
+    print(f"{dab['messages']['name']} said: {dab['messages']['message']}")
+
 
 @socketio.on("connect")
 def connect(auth):
@@ -297,6 +311,37 @@ def linkedinurl():
     if existing_profile:
         return redirect(url_for('profile', **existing_profile))
     return render_template('linkedinurl.html')
+
+@app.route('/post_job', methods=['POST'])
+@login_required_routes(login_required_routes_list)
+def post_job():
+    # Retrieve the form data from the request
+    job_title = request.form.get('title')
+    tech_stacks = request.form.get('stacks')
+    job_description = request.form.get('description')
+    contact = request.form.get('contact')
+
+    # Retrieve the user's name from the session
+    user_name = session['name']
+
+    # Create a dictionary with the job information
+    job_info = {
+        "job_title": job_title,
+        "tech_stacks": tech_stacks,
+        "job_description": job_description,
+        "contact": contact,
+        "posted_by": user_name
+    }
+
+    # Store the job information in the 'AdminJobs' collection
+    try:
+        dab['AdminJobs'].insert_one(job_info)
+    except OperationFailure as e:
+        # Handle any potential error when inserting the job information
+        return render_template('error.html', error=str(e))
+    
+    return "Job Uploaded Successfully"
+
 
 @app.route('/get_profile', methods=['POST'])
 @login_required_routes(login_required_routes_list)
