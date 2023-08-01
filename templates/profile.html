@@ -13,84 +13,91 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
     <style>
-        *{
-    margin: 0;
-}
-  
-body{
-    background-image: url('../static/Group\ 46.png');
-}
-  
-.barnav{
-    font-family: 'Inter';
-    position: fixed;
-    height: 18%;
-    width: 100%;
-    background-color: #003153;
-    z-index: 1;
-}
-  
-.topds{
-    position: absolute;
-    background-color: #f5f5f5;
-    height: 36%;
-    width: 100%;
-    z-index: -1;
-}
-  
-#log{
-    position: relative;
-    top: 10%;
-    left: 5%;
-    height: 80%;
-}
-  
-#clg{
-    font-size: 20px;
-}
-  
-#nm{
-    position: absolute;
-    top: 10%;
-    left: 16%;
-}
-  
-.subbar ul li a{
-    text-align: center;
-    text-decoration: none;
-    color: white;
-}
-  
-.subbar ul{
-    width: 100%;
-}
-  
-.subbar ul li{
-    font-size: 12px;
-    text-align: center;
-    margin-right: 5%;
-    transform: translateY(-150%);
-}
-  
-.subbar ul li:nth-child(1){
-    margin-left: 40%;
-}
-  
-.subbar ul li:nth-child(1) a:hover{
-    color: cyan;
-}
-  
-.subbar ul li:nth-child(2) a:hover{
-    color: cyan;
-}
-  
-.subbar ul li:nth-child(3) a:hover{
-    color: cyan;
-}
-  
-.subbar ul li:nth-child(4) a:hover{
-    color: cyan;
-}
+        * {
+            margin: 0;
+        }
+
+        body {
+            background-image: url('../static/Group\ 46.png');
+        }
+
+        .barnav {
+            font-family: 'Inter';
+            position: fixed;
+            height: 18%;
+            width: 100%;
+            background-color: #003153;
+            z-index: 1;
+        }
+
+        .topds {
+            position: absolute;
+            background-color: #f5f5f5;
+            height: 36%;
+            width: 100%;
+            z-index: -1;
+        }
+
+        #log {
+            position: relative;
+            top: 10%;
+            left: 5%;
+            height: 80%;
+        }
+
+        #clg {
+            font-size: 20px;
+        }
+
+        #nm {
+            position: absolute;
+            top: 10%;
+            left: 16%;
+        }
+
+        .subbar ul li a {
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        .subbar ul {
+            width: 100%;
+        }
+
+        .subbar ul li {
+            font-size: 12px;
+            text-align: center;
+            margin-right: 5%;
+            transform: translateY(-150%);
+        }
+
+        .subbar ul li:nth-child(1) {
+            margin-left: 40%;
+        }
+
+        .subbar ul li:nth-child(1) a:hover {
+            color: cyan;
+        }
+
+        .subbar ul li:nth-child(2) a:hover {
+            color: cyan;
+        }
+
+        .subbar ul li:nth-child(3) a:hover {
+            color: cyan;
+        }
+
+        .subbar ul li:nth-child(4) a:hover {
+            color: cyan;
+        }
+
+        /* 
+        .desc input:focus + label {
+            color: white;
+            transition: 0.5s; 
+        } */
+        
     </style>
 </head>
 
@@ -211,24 +218,35 @@ body{
                     <button class="searchbtn34  btn35"><a href="./searchprofile">Search</a></button>
                     <button class="searchbtn34  btn35"><a href="./events">Events</a></button>
                     <button class="searchbtn34  btn35"><a href="./#gallerypic">Gallery</a></button>
-                    <br>
+                    
                     <div class="horizontalline2" style="width: 50%;"></div>
-                    <br>
-                    <br>
-                    <form method="post">
+                                        
+                    <form method="post" action="/post_job">
                         <div class="desc txt_field">
-                            <input type="text" name="job_title"> <!-- Added input field for job description -->
+                            <input type="text" name="title" placeholder="Job Title" required> 
                             <span></span>
                             <br>
-                            <label>Job Title</label>
+                            
                         </div>
                         <div class="desc txt_field">
-                            <input type="text" name="job_description"> <!-- Added input field for job description -->
+                            <input type="text" placeholder="Tech Stacks" name="stacks" required> 
                             <span></span>
                             <br>
-                            <label>Job Description</label>
+                          
                         </div>
-                        <button type="submit" class="searchbtn34 btn35">Post Job</button>
+                        <div class="desc txt_field">
+                            <input type="text" name="description" placeholder="Job Description" required>
+                            <span></span>
+                            <br>
+                            
+                        </div>                        
+                        <div class="desc txt_field">
+                            <input type="text" name="contact" placeholder="Contact" required>
+                            <span></span>
+                            <br>
+                            
+                        </div>
+                        <button type="submit" class="searchbtn34 btn35 special">Post Job</button>
                     </form>
                     
                     <!--<button class="searchbtn34  btn35"><a href="./jobs">Post Job</a></button>-->
