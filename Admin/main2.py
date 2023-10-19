@@ -61,6 +61,19 @@ def delete(id):
 def events():
     all_events = EVENTS.find()
     return render_template('events.html', events=all_events)
+    
+@app.post('/events/<id>/delete/ohohh')
+def delete(id):
+    # eventtobedeleted={'_id':ObjectId(id)}
+    EVENTS.delete_one({"_id":ObjectId(id)})
+    # events.delete_one(eventtobedeleted)
+    return redirect(url_for('events'))
+
+
+@app.route('/eventg')
+def events():
+    all_events = EVENTS.find()
+    return render_template('events.html', events=all_events)
 
 
 
@@ -133,6 +146,63 @@ def mail():
     return render_template('mail.html',mails=all_mails)
 
 @app.route('/mailsext', methods=['GET','POST'])
+def mailsext():
+    email_sender='mralumniportal@gmail.com'
+    email_password='iitisoc123'   
+    if request.method=='POST':
+        email_receiver=request.form['email']
+        subject=request.form['subject']
+        body=request.form['message']
+        today=date.today()
+        today_string = today.strftime("%Y-%m-%d")
+
+
+        MAILS.insert_one({'to': email_receiver, 'subject': subject, 'body':body,'date':today_string})
+
+        em=EmailMessage()
+        em['From']=email_sender
+        em['To']=email_receiver
+        em['Subject']=subject
+        em.set_content(body)
+
+        context=ssl.create_default_context()
+
+        with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+            smtp.login(email_sender,email_password)
+            smtp.sendmail(email_sender,email_receiver,em.as_string())
+        return redirect(url_for('mail'))
+    return render_template('mailsext.html')
+    
+@app.route('/mailset', methods=['GET','POST'])
+def mailsext():
+    email_sender='mralumniportal@gmail.com'
+    email_password='iitisoc123'   
+    if request.method=='POST':
+        email_receiver=request.form['email']
+        subject=request.form['subject']
+        body=request.form['message']
+        today=date.today()
+        today_string = today.strftime("%Y-%m-%d")
+
+
+        MAILS.insert_one({'to': email_receiver, 'subject': subject, 'body':body,'date':today_string})
+
+        em=EmailMessage()
+        em['From']=email_sender
+        em['To']=email_receiver
+        em['Subject']=subject
+        em.set_content(body)
+
+        context=ssl.create_default_context()
+
+        with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+            smtp.login(email_sender,email_password)
+            smtp.sendmail(email_sender,email_receiver,em.as_string())
+        return redirect(url_for('mail'))
+    return render_template('mailsext.html')
+    
+    
+@app.route('/malsext', methods=['GET','POST'])
 def mailsext():
     email_sender='mralumniportal@gmail.com'
     email_password='iitisoc123'   
