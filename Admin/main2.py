@@ -134,8 +134,8 @@ def mail():
 
 @app.route('/mailsext', methods=['GET','POST'])
 def mailsext():
-    email_sender='cse220001020@iiti.ac.in'
-    email_password='cbkdnqyakmtiekdh'   
+    email_sender='mralumniportal@gmail.com'
+    email_password='iitisoc123'   
     if request.method=='POST':
         email_receiver=request.form['email']
         subject=request.form['subject']
